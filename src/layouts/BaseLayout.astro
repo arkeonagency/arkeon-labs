@@ -1,0 +1,42 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.jsx';
+import Footer from '../components/Footer.jsx';
+import 'aos/dist/aos.css';
+---
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Arkeon Studio</title>
+  </head>
+  <body class="bg-arkeon-charcoal text-white overflow-x-hidden selection:bg-arkeon-gold selection:text-arkeon-charcoal">
+    
+    <!-- CHANGED: Using client:only="react" to force interactivity -->
+    <Navbar client:only="react" />
+
+    <main class="flex-grow pt-16 min-h-screen">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <script>
+      import AOS from 'aos';
+      
+      // Initialize animations after a short delay to ensure DOM is ready
+      setTimeout(() => {
+        AOS.init({
+          duration: 800,
+          once: true,
+          easing: 'ease-out-cubic',
+          offset: 50,
+        });
+      }, 100);
+    </script>
+  </body>
+</html>

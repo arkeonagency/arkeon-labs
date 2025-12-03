@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Seo from '../components/Seo.jsx';
+import ContactForm from '../components/ContactForm.jsx';
+import { Mail, Calendar, MessageCircle } from 'lucide-react';
+
+// You would typically load these from import.meta.env
+const telegramHandle = "@bereket"; 
+const contactEmail = "hello@arkeon.example";
+const calendlyUrl = "https://calendly.com/";
+---
+
+<BaseLayout>
+  <Seo 
+    title="Contact" 
+    description="Start your project with Arkeon — book a strategy call or send a message." 
+  />
+
+  <section class="pt-32 pb-20">
+    <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-20">
+      
+      {/* Left Column: Info */}
+      <div data-aos="fade-right">
+        <h1 class="text-5xl md:text-6xl font-serif font-bold mb-6">Start Your Project</h1>
+        <p class="text-xl text-arkeon-gray mb-12">
+          Ready to elevate your brand? We are currently accepting new projects for the upcoming quarter.
+        </p>
+
+        <div class="space-y-8">
+          <a href={calendlyUrl} target="_blank" class="flex items-center gap-4 group p-4 border border-white/10 rounded hover:border-arkeon-gold/50 transition-colors">
+            <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center group-hover:bg-arkeon-gold group-hover:text-arkeon-charcoal transition-colors">
+              <Calendar size={24} />
+            </div>
+            <div>
+              <h3 class="font-bold text-white">Book a Strategy Call</h3>
+              <p class="text-sm text-gray-400">20-minute intro call via Calendly</p>
+            </div>
+          </a>
+
+          <a href={`https://t.me/${telegramHandle.replace('@','')}`} target="_blank" class="flex items-center gap-4 group p-4 border border-white/10 rounded hover:border-arkeon-gold/50 transition-colors">
+            <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center group-hover:bg-arkeon-gold group-hover:text-arkeon-charcoal transition-colors">
+              <MessageCircle size={24} />
+            </div>
+            <div>
+              <h3 class="font-bold text-white">Chat on Telegram</h3>
+              <p class="text-sm text-gray-400">Direct message {telegramHandle}</p>
+            </div>
+          </a>
+
+          <a href={`mailto:${contactEmail}`} class="flex items-center gap-4 group p-4 border border-white/10 rounded hover:border-arkeon-gold/50 transition-colors">
+            <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center group-hover:bg-arkeon-gold group-hover:text-arkeon-charcoal transition-colors">
+              <Mail size={24} />
+            </div>
+            <div>
+              <h3 class="font-bold text-white">Email Us</h3>
+              <p class="text-sm text-gray-400">{contactEmail}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      {/* Right Column: Form */}
+      <div class="bg-white/5 p-8 md:p-10 rounded-xl" data-aos="fade-left">
+        <h2 class="text-2xl font-serif mb-6">Send a message</h2>
+        <ContactForm client:load />
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Seo from '../../components/Seo.jsx';
+import { ArrowLeft } from 'lucide-react';
+---
+
+<BaseLayout>
+  <Seo 
+    title="Sample Portfolio — Case Study" 
+    description="A fictional high-end portfolio created to showcase Arkeon’s premium capabilities." 
+  />
+
+  <section class="pt-32 pb-20 bg-gradient-to-b from-arkeon-charcoal to-black">
+    <div class="container mx-auto px-6">
+      <a href="/work" class="inline-flex items-center gap-2 text-arkeon-gold text-sm mb-8 hover:underline">
+        <ArrowLeft size={16} /> Back to Work
+      </a>
+      <h1 class="text-4xl md:text-6xl font-serif font-bold mb-6">Sample Portfolio — Designing the Possible</h1>
+      <div class="flex flex-wrap gap-4 text-sm text-gray-400 mb-12">
+        <span class="border border-white/20 px-3 py-1 rounded-full">Concept</span>
+        <span class="border border-white/20 px-3 py-1 rounded-full">Motion Design</span>
+      </div>
+      <div class="w-full aspect-video bg-gray-800 rounded-lg overflow-hidden">
+        <img 
+          src="https://images.unsplash.com/photo-1545239351-ef35f43d514b?q=80&w=1600&auto=format&fit=crop" 
+          alt="Sample portfolio screens"
+          class="w-full h-full object-cover"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="container mx-auto px-6 grid md:grid-cols-12 gap-12">
+      <div class="md:col-span-4 space-y-8">
+        <div>
+          <h3 class="text-arkeon-gold text-sm uppercase tracking-wider mb-2">Client</h3>
+          <p class="text-white">Internal Concept</p>
+        </div>
+        <div>
+          <h3 class="text-arkeon-gold text-sm uppercase tracking-wider mb-2">Focus</h3>
+          <p class="text-gray-400">Advanced Interaction, Layout</p>
+        </div>
+      </div>
+
+      <div class="md:col-span-8 space-y-16">
+        <div data-aos="fade-up">
+          <h2 class="text-3xl font-serif mb-4">The Challenge</h2>
+          <p class="text-gray-400 leading-relaxed text-lg">
+            To push the boundaries of what is possible in a standard browser without compromising performance. This project served as a playground for scroll-linked animations and WebGL experiments.
+          </p>
+        </div>
+
+        <div data-aos="fade-up">
+          <h2 class="text-3xl font-serif mb-4">The Execution</h2>
+          <p class="text-gray-400 leading-relaxed">
+            We utilized Astro for a zero-javascript initial load, hydrating only the interactive islands built with React and Framer Motion.
+          </p>
+        </div>
+        
+        <div data-aos="fade-up">
+           <img src="https://images.unsplash.com/photo-1509395062549-31cd487000d1?q=80&w=1200&auto=format&fit=crop" class="rounded-lg w-full mt-8" alt="Abstract interface" />
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="py-20 text-center">
+    <div class="container mx-auto px-6">
+      <h3 class="text-2xl font-serif mb-6">Want a site like this?</h3>
+      <a href="/contact" class="px-8 py-3 bg-arkeon-gold text-arkeon-charcoal font-bold rounded">Start Project</a>
+    </div>
+  </section>
+</BaseLayout>

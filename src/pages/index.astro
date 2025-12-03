@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.jsx';
+import Seo from '../components/Seo.jsx';
+import CaseStudyCard from '../components/CaseStudyCard.jsx';
+---
+
+<BaseLayout>
+  <Seo 
+    title="Home" 
+    description="Arkeon builds premium, story-first websites and brand identities for startups and luxury brands." 
+  />
+
+  <Hero client:load />
+
+  {/* Intro Blurb */}
+  <section class="py-20 bg-arkeon-charcoal" data-aos="fade-up">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-serif leading-snug mb-6">
+          Every brand has an origin story. <br/>
+          <span class="text-arkeon-gray">At Arkeon, we craft the digital beginnings of great brands.</span>
+        </h2>
+        <p class="text-lg text-gray-400">
+          We combine strategic thinking, elegant design, and technical excellence to create websites that look premium and perform.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* Services Preview */}
+  <section class="py-20 border-t border-white/5">
+    <div class="container mx-auto px-6">
+      <div class="grid md:grid-cols-3 gap-8">
+        {[
+          { title: "Origin", desc: "For startups needing a powerful narrative start.", price: "Starter" },
+          { title: "Evolution", desc: "For growing brands needing SEO & interactions.", price: "Premium" },
+          { title: "Pinnacle", desc: "Full brand & digital experience for luxury players.", price: "Luxury" }
+        ].map((service, index) => (
+          <div 
+            class="p-8 border border-white/10 rounded-lg hover:border-arkeon-gold/50 transition-colors bg-white/5"
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
+          >
+            <h3 class="text-2xl font-serif mb-2">{service.title}</h3>
+            <span class="text-xs text-arkeon-gold uppercase tracking-wider">{service.price}</span>
+            <p class="mt-4 text-gray-400 text-sm mb-6">{service.desc}</p>
+            <a href="/services" class="text-sm font-bold border-b border-white/20 pb-1 hover:text-arkeon-gold hover:border-arkeon-gold transition-all">View Package</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Featured Work */}
+  <section class="py-24 bg-black/20">
+    <div class="container mx-auto px-6">
+      <div class="flex justify-between items-end mb-12">
+        <h2 class="text-4xl font-serif">Selected Work</h2>
+        <a href="/work" class="text-sm text-arkeon-gray hover:text-white">View all projects →</a>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <CaseStudyCard 
+          title="Aman Dental"
+          category="Healthcare"
+          image="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=800&auto=format&fit=crop"
+          href="/work/aman-dental"
+        />
+        <CaseStudyCard 
+          title="NOURA Skincare"
+          category="E-Commerce"
+          image="https://images.unsplash.com/photo-1556228720-1987df2856b7?q=80&w=800&auto=format&fit=crop"
+          href="/work/noura-skincare"
+        />
+        <CaseStudyCard 
+          title="Sample Portfolio"
+          category="Creative"
+          image="https://images.unsplash.com/photo-1545239351-ef35f43d514b?q=80&w=800&auto=format&fit=crop"
+          href="/work/sample-portfolio"
+        />
+      </div>
+    </div>
+  </section>
+
+  {/* Why Arkeon */}
+  <section class="py-24">
+    <div class="container mx-auto px-6">
+      <div class="grid md:grid-cols-3 gap-12 text-center md:text-left">
+        <div data-aos="fade-up">
+          <h3 class="text-xl font-bold text-white mb-4">Story-Driven Design</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">We don't just decorate; we translate your business value into a visual narrative that connects with humans.</p>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="100">
+          <h3 class="text-xl font-bold text-white mb-4">Design + Development</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">No hand-off friction. We build what we design, ensuring pixel-perfect execution and high performance.</p>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="200">
+          <h3 class="text-xl font-bold text-white mb-4">Local & Premium</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Based in Addis Ababa with global standards. We bring international quality to local and remote partnerships.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Testimonials */}
+  <section class="py-20 border-y border-white/5 bg-white/5">
+    <div class="container mx-auto px-6 text-center">
+      <h3 class="text-2xl md:text-3xl font-serif italic text-white mb-6">
+        "Arkeon transformed our website into a true brand asset. The attention to detail is unmatched."
+      </h3>
+      <p class="text-arkeon-gold text-sm font-bold uppercase tracking-widest">— Client Name, CEO</p>
+    </div>
+  </section>
+
+  {/* Footer CTA */}
+  <section class="py-32 text-center">
+    <div class="container mx-auto px-6">
+      <h2 class="text-4xl md:text-5xl font-serif mb-8">Ready to begin?</h2>
+      <a 
+        href="/contact" 
+        class="inline-block px-10 py-4 bg-arkeon-white text-arkeon-charcoal text-lg font-bold rounded hover:bg-arkeon-gold transition-colors"
+      >
+        Start Your Project
+      </a>
+    </div>
+  </section>
+</BaseLayout>

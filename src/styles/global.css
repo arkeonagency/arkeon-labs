@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+  NOTE: The design requests 'Recoleta'. Since it is a licensed font, 
+  we are using 'Playfair Display' as a high-quality fallback.
+  If you have the Recoleta woff2 files, add them to /public/fonts 
+  and uncomment the @font-face block below.
+*/
+
+/* 
+@font-face {
+  font-family: 'Recoleta';
+  src: url('/fonts/Recoleta-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+} 
+*/
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #1C1C1E; /* Deep Charcoal */
+    color: #F7F7F7; /* Warm White */
+  }
+  
+  body {
+    @apply font-sans antialiased overflow-x-hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    /* Change to font-serif if you load Recoleta, currently using Playfair as proxy */
+    @apply font-serif text-arkeon-white; 
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #1C1C1E;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #E6C55B;
+  }
+}
+
+/* ... existing code ... */
+
+/* GHOST BUSTER: Hide any duplicate headers */
+header:not(#react-navbar) {
+  display: none !important;
+}

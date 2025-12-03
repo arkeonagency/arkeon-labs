@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Seo from '../components/Seo.jsx';
+---
+
+<BaseLayout>
+  <Seo 
+    title="About" 
+    description="Arkeon is a premium web design & brand studio led by Bereket Tadele." 
+  />
+
+  {/* Hero */}
+  <section class="pt-32 pb-20">
+    <div class="container mx-auto px-6">
+      <h1 class="text-5xl md:text-7xl font-serif mb-8" data-aos="fade-up">Where Brands Begin</h1>
+    </div>
+  </section>
+
+  {/* Founder */}
+  <section class="py-20 border-t border-white/5">
+    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+      <div data-aos="fade-right">
+        <div class="aspect-square bg-gray-800 rounded-lg overflow-hidden relative">
+          {/* Replace with real image */}
+          <img 
+            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop" 
+            alt="Bereket Tadele" 
+            class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+          />
+        </div>
+      </div>
+      <div data-aos="fade-left">
+        <span class="text-arkeon-gold font-serif text-2xl mb-2 block">Bereket Tadele</span>
+        <h2 class="text-4xl font-bold mb-6">Founder & Lead Designer</h2>
+        <p class="text-gray-400 leading-relaxed mb-6">
+          I am a graphic designer and web developer with a passion for building digital products that matter. With experience in building Telegram mini-apps and high-end marketing sites, I founded Arkeon to bridge the gap between aesthetic beauty and technical performance.
+        </p>
+        <p class="text-gray-400 leading-relaxed">
+          My goal is simple: to help founders and luxury businesses tell their stories with clarity, precision, and impact.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* Values */}
+  <section class="py-20 bg-white/5">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-serif mb-12 text-center">Our Values</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {['Precision', 'Mastery', 'Clarity', 'Innovation', 'Trust'].map((val, i) => (
+          <div key={i} class="text-center p-6 border border-white/5 rounded hover:border-arkeon-gold/30 transition-colors">
+            <h3 class="text-xl font-bold text-white">{val}</h3>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-32 text-center">
+     <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-serif mb-8">Let's build something lasting.</h2>
+        <a href="/contact" class="text-arkeon-gold text-lg font-bold border-b border-arkeon-gold pb-1 hover:text-white hover:border-white transition-all">
+          Start a project with us →
+        </a>
+     </div>
+  </section>
+</BaseLayout>

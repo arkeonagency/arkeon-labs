@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Seo from '../../components/Seo.jsx';
+import { ArrowLeft } from 'lucide-react';
+---
+
+<BaseLayout>
+  <Seo 
+    title="Aman Dental — Case Study" 
+    description="Aman Dental brand & website designed by Arkeon — a narrative-driven redesign for a local dental clinic." 
+  />
+
+  {/* Case Study Hero */}
+  <section class="pt-32 pb-20 bg-gradient-to-b from-arkeon-charcoal to-black">
+    <div class="container mx-auto px-6">
+      <a href="/work" class="inline-flex items-center gap-2 text-arkeon-gold text-sm mb-8 hover:underline">
+        <ArrowLeft size={16} /> Back to Work
+      </a>
+      <h1 class="text-4xl md:text-6xl font-serif font-bold mb-6">Aman Dental — A Calm Dental Experience</h1>
+      <div class="flex flex-wrap gap-4 text-sm text-gray-400 mb-12">
+        <span class="border border-white/20 px-3 py-1 rounded-full">Healthcare</span>
+        <span class="border border-white/20 px-3 py-1 rounded-full">Web Design</span>
+        <span class="border border-white/20 px-3 py-1 rounded-full">Branding</span>
+      </div>
+      <div class="w-full aspect-video bg-gray-800 rounded-lg overflow-hidden">
+        <img 
+          src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1600&auto=format&fit=crop" 
+          alt="Aman Dental clinic interior"
+          class="w-full h-full object-cover"
+        />
+      </div>
+    </div>
+  </section>
+
+  {/* Narrative Sections */}
+  <section class="py-20">
+    <div class="container mx-auto px-6 grid md:grid-cols-12 gap-12">
+      
+      {/* Sidebar Info */}
+      <div class="md:col-span-4 space-y-8">
+        <div>
+          <h3 class="text-arkeon-gold text-sm uppercase tracking-wider mb-2">Client</h3>
+          <p class="text-white">Aman Dental Clinic</p>
+        </div>
+        <div>
+          <h3 class="text-arkeon-gold text-sm uppercase tracking-wider mb-2">Services</h3>
+          <p class="text-gray-400">Strategy, Branding, UI/UX, Development</p>
+        </div>
+        <div>
+          <h3 class="text-arkeon-gold text-sm uppercase tracking-wider mb-2">Outcome</h3>
+          <p class="text-gray-400">Higher appointment conversions, improved trust.</p>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div class="md:col-span-8 space-y-16">
+        <div data-aos="fade-up">
+          <h2 class="text-3xl font-serif mb-4">The Problem</h2>
+          <p class="text-gray-400 leading-relaxed text-lg">
+            Aman Dental needed a website that communicated trust, cleanliness, and patient comfort. Their existing site felt clinical and dated, failing to convert appointment requests effectively.
+          </p>
+        </div>
+
+        <div data-aos="fade-up">
+          <h2 class="text-3xl font-serif mb-4">The Strategy</h2>
+          <p class="text-gray-400 leading-relaxed">
+            We focused on building a calm, minimal interface with warm photography and clear calls-to-action (CTAs). The goal was to create a story-first homepage that walks a potential patient through the experience before they even book, alleviating dental anxiety.
+          </p>
+        </div>
+
+        <div data-aos="fade-up">
+          <h2 class="text-3xl font-serif mb-4">Execution & Deliverables</h2>
+          <ul class="list-disc list-inside text-gray-400 space-y-2">
+            <li>Refreshed brand color palette (Teal & Soft White)</li>
+            <li>Clean, readable typography hierarchy</li>
+            <li>Streamlined appointment booking flow</li>
+            <li>Fully responsive mobile design</li>
+            <li>Google Analytics 4 setup for conversion tracking</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Image Gallery */}
+  <section class="py-10 bg-white/5">
+    <div class="container mx-auto px-6 grid gap-8">
+      <img src="https://images.unsplash.com/photo-1588776814546-1b936d54f8f3?q=80&w=1200&auto=format&fit=crop" alt="Details" class="rounded-lg w-full" />
+      <div class="grid md:grid-cols-2 gap-8">
+        <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?q=80&w=800&auto=format&fit=crop" alt="Mobile View" class="rounded-lg w-full" />
+        <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=800&auto=format&fit=crop" alt="Reception" class="rounded-lg w-full" />
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 text-center">
+    <div class="container mx-auto px-6">
+      <h3 class="text-2xl font-serif mb-6">Ready to transform your business?</h3>
+      <a href="/contact" class="px-8 py-3 bg-arkeon-gold text-arkeon-charcoal font-bold rounded">Start Project</a>
+    </div>
+  </section>
+</BaseLayout>

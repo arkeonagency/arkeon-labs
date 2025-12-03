@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Seo from '../components/Seo.jsx';
+
+const pricingData = [
+  {
+    name: "Origin",
+    price: "$1.5k – $2.5k",
+    desc: "For startups needing a powerful narrative start.",
+    features: [
+      "1–3 Pages",
+      "Narrative-driven Homepage",
+      "Responsive Design",
+      "Basic SEO Setup",
+      "Contact Form Integration"
+    ]
+  },
+  {
+    name: "Evolution",
+    price: "$3.5k – $5.5k",
+    desc: "For growing brands needing SEO & interactions.",
+    features: [
+      "5–7 Pages",
+      "CMS for Blog/Case Studies",
+      "Advanced Animations",
+      "SEO & Analytics",
+      "Newsletter Integration"
+    ],
+    highlight: true
+  },
+  {
+    name: "Pinnacle",
+    price: "$6k – $12k+",
+    desc: "Full brand & digital experience for luxury players.",
+    features: [
+      "Full Brand Identity System",
+      "Custom Web App Features",
+      "Complex Interactions",
+      "Content Strategy",
+      "Monthly Retainer Option"
+    ]
+  }
+];
+---
+
+<BaseLayout>
+  <Seo 
+    title="Pricing" 
+    description="Transparent pricing for Arkeon's web design and branding packages." 
+  />
+
+  <section class="pt-32 pb-20 text-center">
+    <div class="container mx-auto px-6">
+      <h1 class="text-5xl font-serif mb-6">Investment</h1>
+      <p class="text-gray-400 max-w-2xl mx-auto mb-12">
+        We value transparency. While every project is unique, these ranges provide a baseline for our partnership tiers.
+      </p>
+
+      {/* Pricing Table */}
+      <div class="grid md:grid-cols-3 gap-8 text-left max-w-6xl mx-auto">
+        {pricingData.map((tier, i) => (
+          <div class={`p-8 rounded-lg border ${tier.highlight ? 'border-arkeon-gold bg-arkeon-gold/5' : 'border-white/10 bg-white/5'}`}>
+            <h3 class="text-2xl font-serif mb-2">{tier.name}</h3>
+            <div class="text-3xl font-bold text-white mb-4">{tier.price}</div>
+            <p class="text-sm text-gray-400 mb-6">{tier.desc}</p>
+            <ul class="space-y-3 mb-8 border-t border-white/10 pt-6">
+              {tier.features.map(feat => (
+                <li class="flex items-center gap-2 text-sm text-gray-300">
+                  <span class="text-arkeon-gold">•</span> {feat}
+                </li>
+              ))}
+            </ul>
+            <a href="/contact" class={`block w-full text-center py-3 rounded font-bold text-sm ${tier.highlight ? 'bg-arkeon-gold text-arkeon-charcoal' : 'bg-white/10 hover:bg-white text-white hover:text-charcoal'} transition-all`}>
+              Inquire
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* FAQ Section */}
+  <section class="py-20 border-t border-white/5">
+    <div class="container mx-auto px-6 max-w-3xl">
+      <h2 class="text-3xl font-serif mb-12 text-center">Common Questions</h2>
+      
+      <div class="space-y-8">
+        <div>
+          <h3 class="text-xl font-bold text-white mb-2">What are the payment terms?</h3>
+          <p class="text-gray-400">We typically require a 50% deposit to secure your slot in our schedule, with the remaining 50% due upon project completion and before final hand-off.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold text-white mb-2">Do you do hourly work?</h3>
+          <p class="text-gray-400">We prefer project-based pricing as it focuses on value and deliverables rather than time. However, for ongoing maintenance, we offer monthly retainer packages.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold text-white mb-2">What platform do you use?</h3>
+          <p class="text-gray-400">We specialize in Astro and React for high-performance, custom-coded sites. We can also integrate headless CMS solutions if you need to edit content frequently without touching code.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

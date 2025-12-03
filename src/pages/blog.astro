@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Seo from '../components/Seo.jsx';
+import { getCollection } from 'astro:content';
+
+// Fetch all posts from src/content/posts
+const posts = await getCollection('posts');
+---
+
+<BaseLayout>
+  <Seo 
+    title="Insights" 
+    description="Design insights, case study breakdowns, and strategy articles from Arkeon." 
+  />
+
+  <section class="pt-32 pb-20 text-center">
+    <div class="container mx-auto px-6">
+      <h1 class="text-5xl font-serif mb-6">Insights</h1>
+      <p class="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
+        Thoughts on design, strategy, and the future of digital brands.
+      </p>
+      
+      {/* Blog Grid */}
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+        {posts.map(post => (
+          <a href={`/blog/${post.slug}`} class="group block border border-white/10 rounded-lg overflow-hidden bg-white/5 hover:border-arkeon-gold/50 transition-all">
+            <div class="aspect-video overflow-hidden">
+              <img 
+                src={post.data.heroImage} 
+                alt={post.data.title} 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-center text-xs text-arkeon-gold mb-3 uppercase tracking-wider">
+                <span>{post.data.pubDate}</span>
+                <span>{post.data.author}</span>
+              </div>
+              <h2 class="text-xl font-serif font-bold text-white mb-3 group-hover:text-arkeon-gold transition-colors">
+                {post.data.title}
+              </h2>
+              <p class="text-gray-400 text-sm line-clamp-3">
+                {post.data.description}
+              </p>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      {posts.length === 0 && (
+        <div class="p-12 border border-dashed border-white/10 rounded-lg inline-block bg-white/5">
+          <p class="text-arkeon-gold font-mono mb-4">Writing in progress...</p>
+          <p class="text-gray-500 text-sm">Check back soon for updates.</p>
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>

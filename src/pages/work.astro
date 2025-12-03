@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Seo from '../components/Seo.jsx';
+import CaseStudyCard from '../components/CaseStudyCard.jsx';
+
+const projects = [
+  {
+    title: "Aman Dental",
+    category: "Healthcare",
+    image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=800&auto=format&fit=crop",
+    href: "/work/aman-dental"
+  },
+  {
+    title: "NOURA Skincare",
+    category: "E-Commerce",
+    image: "https://images.unsplash.com/photo-1556228720-1987df2856b7?q=80&w=800&auto=format&fit=crop",
+    href: "/work/noura-skincare"
+  },
+  {
+    title: "Sample Portfolio",
+    category: "Creative",
+    image: "https://images.unsplash.com/photo-1545239351-ef35f43d514b?q=80&w=800&auto=format&fit=crop",
+    href: "/work/sample-portfolio"
+  }
+];
+---
+
+<BaseLayout>
+  <Seo 
+    title="Work" 
+    description="Case studies: Aman Dental, NOURA Skincare, Sample Portfolio — narrative-driven websites by Arkeon." 
+  />
+
+  <section class="pt-32 pb-20">
+    <div class="container mx-auto px-6 text-center">
+      <h1 class="text-5xl md:text-7xl font-serif mb-6" data-aos="fade-up">Selected Work</h1>
+      <p class="text-xl text-arkeon-gray max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+        Our work combines strategy, craft, and technical delivery. Each project is presented as a story.
+      </p>
+    </div>
+  </section>
+
+  <section class="pb-32">
+    <div class="container mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-10">
+        {projects.map((project, index) => (
+          <div data-aos="fade-up" data-aos-delay={index * 100} class={index === 2 ? "md:col-span-2 md:w-2/3 md:mx-auto" : ""}>
+            <CaseStudyCard {...project} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <section class="py-20 border-t border-white/5 text-center">
+    <h3 class="text-2xl font-serif mb-6">Have a project in mind?</h3>
+    <a href="/contact" class="px-8 py-3 bg-arkeon-white text-arkeon-charcoal font-bold rounded hover:bg-arkeon-gold transition-colors">
+      Let's Discuss
+    </a>
+  </section>
+</BaseLayout>

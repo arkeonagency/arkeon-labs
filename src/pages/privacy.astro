@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Seo from '../components/Seo.jsx';
+---
+
+<BaseLayout>
+  <Seo title="Privacy Policy" />
+  <section class="pt-32 pb-20">
+    <div class="container mx-auto px-6 max-w-3xl prose prose-invert">
+      <h1 class="font-serif text-4xl mb-8">Privacy Policy</h1>
+      <p>Last updated: {new Date().toLocaleDateString()}</p>
+      
+      <p>At Arkeon, we respect your privacy. This policy explains how we handle your data.</p>
+      
+      <h3>Data Collection</h3>
+      <p>We collect information you provide directly via our contact forms (Name, Email). We use Google Analytics and Meta Pixels to understand site traffic anonymously.</p>
+      
+      <h3>Usage</h3>
+      <p>Your data is used solely to respond to inquiries and improve our website experience. We do not sell data to third parties.</p>
+      
+      <h3>Contact</h3>
+      <p>For data removal requests, please email hello@arkeon.example.</p>
+    </div>
+  </section>
+</BaseLayout>

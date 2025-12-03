@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Seo from '../../components/Seo.jsx';
+import { ArrowLeft } from 'lucide-react';
+---
+
+<BaseLayout>
+  <Seo 
+    title="NOURA — Case Study" 
+    description="NOURA skincare brand & website by Arkeon — premium minimalism for a luxury skincare line." 
+  />
+
+  <section class="pt-32 pb-20 bg-gradient-to-b from-arkeon-charcoal to-black">
+    <div class="container mx-auto px-6">
+      <a href="/work" class="inline-flex items-center gap-2 text-arkeon-gold text-sm mb-8 hover:underline">
+        <ArrowLeft size={16} /> Back to Work
+      </a>
+      <h1 class="text-4xl md:text-6xl font-serif font-bold mb-6">NOURA — Calm, Clarity, Nourishment</h1>
+      <div class="flex flex-wrap gap-4 text-sm text-gray-400 mb-12">
+        <span class="border border-white/20 px-3 py-1 rounded-full">E-Commerce</span>
+        <span class="border border-white/20 px-3 py-1 rounded-full">Brand Identity</span>
+      </div>
+      <div class="w-full aspect-video bg-gray-800 rounded-lg overflow-hidden">
+        <img 
+          src="https://images.unsplash.com/photo-1556228720-1987df2856b7?q=80&w=1600&auto=format&fit=crop" 
+          alt="NOURA product flatlay"
+          class="w-full h-full object-cover"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="container mx-auto px-6 grid md:grid-cols-12 gap-12">
+      <div class="md:col-span-4 space-y-8">
+        <div>
+          <h3 class="text-arkeon-gold text-sm uppercase tracking-wider mb-2">Client</h3>
+          <p class="text-white">NOURA Skincare</p>
+        </div>
+        <div>
+          <h3 class="text-arkeon-gold text-sm uppercase tracking-wider mb-2">Services</h3>
+          <p class="text-gray-400">Art Direction, Web Design, Shopify Dev</p>
+        </div>
+      </div>
+
+      <div class="md:col-span-8 space-y-16">
+        <div data-aos="fade-up">
+          <h2 class="text-3xl font-serif mb-4">The Problem</h2>
+          <p class="text-gray-400 leading-relaxed text-lg">
+            NOURA launched with great products but a generic visual identity. They needed a digital flagship that felt as premium and organic as the ingredients they use.
+          </p>
+        </div>
+
+        <div data-aos="fade-up">
+          <h2 class="text-3xl font-serif mb-4">The Strategy</h2>
+          <p class="text-gray-400 leading-relaxed">
+            We employed a strategy of "Premium Minimalism." Large, breathing whitespace, elegant serif typography, and high-fidelity texture shots of the creams and oils to evoke sensory feelings through the screen.
+          </p>
+        </div>
+
+        <div data-aos="fade-up">
+          <h2 class="text-3xl font-serif mb-4">Outcome</h2>
+          <p class="text-gray-400 leading-relaxed">
+            A cohesive brand system that successfully launched their new "Midnight" collection, resulting in a 40% increase in average cart value.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="py-10 bg-white/5">
+     <div class="container mx-auto px-6 grid md:grid-cols-2 gap-8">
+        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=800&auto=format&fit=crop" class="rounded-lg" alt="Product Detail" />
+        <img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=800&auto=format&fit=crop" class="rounded-lg" alt="Lifestyle shot" />
+     </div>
+  </section>
+
+  <section class="py-20 text-center">
+    <div class="container mx-auto px-6">
+      <h3 class="text-2xl font-serif mb-6">Need a premium look?</h3>
+      <a href="/contact" class="px-8 py-3 bg-arkeon-gold text-arkeon-charcoal font-bold rounded">Start Project</a>
+    </div>
+  </section>
+</BaseLayout>
