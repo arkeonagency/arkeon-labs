@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.jsx';
 import Seo from '../components/Seo.jsx';
 import CaseStudyCard from '../components/CaseStudyCard.jsx';
+import LogoMarquee from '../components/LogoMarquee.jsx';
 ---
 
 <BaseLayout>
@@ -12,7 +13,10 @@ import CaseStudyCard from '../components/CaseStudyCard.jsx';
   />
 
   <Hero client:load />
+  {/* NEW: Logo Marquee */}
+<LogoMarquee client:load />
 
+{/* Intro Blurb - Transparent BG to let global glow show */}
   {/* Intro Blurb */}
   <section class="py-24 relative" data-aos="fade-up">
     <div class="container mx-auto px-6 relative z-10">
