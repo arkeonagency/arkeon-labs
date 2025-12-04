@@ -8,31 +8,27 @@ export default function ContactForm() {
     e.preventDefault();
     setStatus('submitting');
 
-    // 1. Convert Form Data to JSON object (More reliable for API)
     const formData = new FormData(e.target);
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
-    
-    // REPLACE 'your-email@gmail.com' WITH YOUR REAL EMAIL BELOW
-    const formEndpoint = 'https://formsubmit.co/ajax/bereketdesigns@gmail.com';
 
     try {
-      const response = await fetch(formEndpoint, {
-        method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
         },
         body: json
       });
-
+      
       const result = await response.json();
 
-      if (response.ok || result.success === "true") {
+      if (result.success) {
         setStatus('success');
         e.target.reset();
       } else {
-        console.error("Form Error:", result);
+        console.error("Error:", result);
         setStatus('error');
       }
     } catch (err) {
@@ -43,12 +39,12 @@ export default function ContactForm() {
 
   if (status === 'success') {
     return (
-      <div className="bg-green-900/20 border border-green-500/50 p-8 rounded-lg text-center backdrop-blur-sm">
+      <div className="bg-green-900/20 border border-green-500/50 p-8 rounded-lg text-center backdrop-blur-sm animate-fade-in">
         <div className="flex justify-center mb-4 text-green-500">
           <CheckCircle size={48} />
         </div>
         <h3 className="text-2xl font-serif text-white mb-2">Message Received</h3>
-        <p className="text-gray-300">Thanks — we’ve received your request. Expect a reply within 48 hours.</p>
+        <p className="text-gray-300">Thanks — we’ve received your request. Expect a reply within 24 hours.</p>
         <button onClick={() => setStatus('idle')} className="mt-6 text-sm underline text-arkeon-gold hover:text-white">
           Send another message
         </button>
@@ -58,10 +54,14 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      {/* Hidden Settings for FormSubmit */}
-      <input type="hidden" name="_subject" value="New Project Inquiry - Arkeon Site" />
-      <input type="hidden" name="_template" value="table" />
-      <input type="hidden" name="_captcha" value="false" />
+      {/* 
+         IMPORTANT: PASTE YOUR ACCESS KEY BELOW 
+         Replace "YOUR_ACCESS_KEY_HERE" with the code from your email.
+      */}
+      <input type="hidden" name="access_key" value="a33f024f-0a21-4853-a448-3b5840055907" />
+      
+      {/* Optional: Honeypot to prevent spam bots */}
+      <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
 
       <div className="grid md:grid-cols-2 gap-6">
         <div className="space-y-2">
@@ -144,7 +144,7 @@ export default function ContactForm() {
 
       {status === 'error' && (
         <div className="text-red-400 text-sm flex items-center gap-2 mt-4">
-          <AlertCircle size={16} /> Something went wrong. Check the console or try again.
+          <AlertCircle size={16} /> Something went wrong. Please check your internet connection.
         </div>
       )}
     </form>
