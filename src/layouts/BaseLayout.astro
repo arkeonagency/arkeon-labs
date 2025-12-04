@@ -14,21 +14,25 @@ import 'aos/dist/aos.css';
     <meta name="generator" content={Astro.generator} />
     <title>Arkeon Studio</title>
   </head>
-  <body class="bg-arkeon-charcoal text-white overflow-x-hidden selection:bg-arkeon-gold selection:text-arkeon-charcoal">
+  <body class="bg-arkeon-charcoal text-white overflow-x-hidden selection:bg-arkeon-gold selection:text-arkeon-charcoal flex flex-col min-h-screen">
     
-    <!-- CHANGED: Using client:only="react" to force interactivity -->
+    {/* Navbar needs React to handle the mobile menu and scroll effects */}
     <Navbar client:only="react" />
 
-    <main class="flex-grow pt-16 min-h-screen">
+    <main class="flex-grow pt-20">
       <slot />
     </main>
 
-    <Footer />
+    {/* 
+       FIX IS HERE: 
+       Added 'client:visible'. This tells Astro to load the React JavaScript 
+       as soon as the user scrolls down to the footer. 
+       Without this, the Subscribe button will just reload the page.
+    */}
+    <Footer client:visible />
 
     <script>
       import AOS from 'aos';
-      
-      // Initialize animations after a short delay to ensure DOM is ready
       setTimeout(() => {
         AOS.init({
           duration: 800,
