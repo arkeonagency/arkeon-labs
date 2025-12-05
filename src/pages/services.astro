@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Seo from '../components/Seo.jsx';
 import { PenTool, Monitor, Code2, ArrowRight, Zap, Search, Layout } from 'lucide-react';
 import { Image } from 'astro:assets';
+import heroImage from '../assets/images/aman.jpg';
 
 const services = [
   {
@@ -119,7 +120,7 @@ const packages = [
       </div>
       <div class="relative h-[400px] rounded-2xl overflow-hidden" data-aos="fade-left">
         <div class="absolute inset-0 bg-arkeon-charcoal/20 z-10"></div>
-        <img src="src/assets/images/strategy.jpg" alt="Strategy Session" class="w-full h-full object-cover" />
+        <Image src={heroImage} alt="Strategy Session" class="w-full h-full object-cover" />
       </div>
     </div>
   </section>
