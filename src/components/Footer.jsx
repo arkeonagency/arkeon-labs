@@ -133,7 +133,7 @@ export default function Footer() {
               
               {/* Social Icons */}
               <div className="flex gap-4 ml-4">
-                <a href="https://t.me/bereket" target="_blank" rel="noreferrer" aria-label="Telegram" className="text-gray-400 hover:text-arkeon-gold hover:scale-110 transition-all">
+                <a href="https://t.me/bereketdesign" target="_blank" rel="noreferrer" aria-label="Telegram" className="text-gray-400 hover:text-arkeon-gold hover:scale-110 transition-all">
                   <Send size={18} />
                 </a>
                 <a href="https://www.instagram.com/bereketdesigns/" target="_blank" rel="noreferrer" aria-label="Instagram" className="text-gray-400 hover:text-arkeon-gold hover:scale-110 transition-all">

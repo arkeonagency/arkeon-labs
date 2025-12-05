@@ -123,9 +123,9 @@ export default function Navbar({ path }) {
                     </a>
                     
                     <div className="flex gap-4 border-l border-white/20 pl-6">
-                        <a href="https://t.me/bereket" target="_blank" className="text-gray-400 hover:text-arkeon-gold transition-colors"><Send size={20} /></a>
-                        <a href="#" className="text-gray-400 hover:text-arkeon-gold transition-colors"><Linkedin size={20} /></a>
-                        <a href="#" className="text-gray-400 hover:text-arkeon-gold transition-colors"><Instagram size={20} /></a>
+                        <a href="https://t.me/bereketdesign" target="_blank" className="text-gray-400 hover:text-arkeon-gold transition-colors"><Send size={20} /></a>
+                        <a href="https://www.instagram.com/bereketdesigns/" className="text-gray-400 hover:text-arkeon-gold transition-colors"><Linkedin size={20} /></a>
+                        <a href="https://www.linkedin.com/in/bereket-tadele-b15660252/" className="text-gray-400 hover:text-arkeon-gold transition-colors"><Instagram size={20} /></a>
                     </div>
                 </div>
             </div>
