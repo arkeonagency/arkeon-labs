@@ -4,7 +4,10 @@ import Navbar from '../components/Navbar.jsx';
 import Footer from '../components/Footer.jsx';
 import 'aos/dist/aos.css';
 
-// 1. NEW: Import Local Fonts (No more Google CDN delay)
+// 1. NEW: Import View Transitions
+import { ViewTransitions } from 'astro:transitions';
+
+// Import Local Fonts
 import '@fontsource/inter/400.css';
 import '@fontsource/inter/600.css';
 import '@fontsource/playfair-display/400.css';
@@ -23,27 +26,25 @@ const currentPath = Astro.url.pathname;
     <meta name="generator" content={Astro.generator} />
     <title>Arkeon Studio</title>
     
-    {/* 
-        REMOVED: The Google Fonts <link> tags.
-        ADDED: Font Display Swap to prevent invisible text
-    */}
     <style is:global>
-      /* Ensure text remains visible during font load */
-      @font-face {
-        font-family: 'Inter';
-        font-display: swap;
-      }
-      @font-face {
-        font-family: 'Playfair Display';
-        font-display: swap;
-      }
+      @font-face { font-family: 'Inter'; font-display: swap; }
+      @font-face { font-family: 'Playfair Display'; font-display: swap; }
     </style>
+
+    {/* 2. NEW: Enable the Router */}
+    <ViewTransitions />
   </head>
   <body class="bg-arkeon-charcoal text-white overflow-x-hidden selection:bg-arkeon-gold selection:text-arkeon-charcoal flex flex-col min-h-screen">
     
-    <Navbar client:load path={currentPath} />
+    {/* 
+        transition:persist ensures the Navbar doesn't reload/flash 
+        when you move between pages. It stays steady.
+    */}
+    <div transition:persist>
+      <Navbar client:load path={currentPath} />
+    </div>
 
-    <main class="flex-grow pt-20">
+    <main class="flex-grow pt-20" transition:animate="fade">
       <slot />
     </main>
 
@@ -51,16 +52,26 @@ const currentPath = Astro.url.pathname;
 
     <script>
       import AOS from 'aos';
-      // Initialize AOS with a slight delay to prioritize LCP
-      setTimeout(() => {
+      
+      // 3. NEW: Handle Animations on Navigation
+      // We wrap the init logic in a function
+      function initAnimations() {
         AOS.init({
           duration: 800,
           once: true,
           easing: 'ease-out-cubic',
           offset: 50,
-          disable: 'mobile' // Optional: Disable on mobile for 100% performance score
+          disable: 'mobile' 
         });
-      }, 100);
+      }
+
+      // Run on initial load
+      initAnimations();
+
+      // Run on every page navigation (View Transition)
+      document.addEventListener('astro:page-load', () => {
+        initAnimations();
+      });
     </script>
   </body>
 </html>

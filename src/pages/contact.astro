@@ -2,11 +2,11 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Seo from '../components/Seo.jsx';
 import ContactForm from '../components/ContactForm.jsx';
-import { Mail, Calendar, MessageCircle } from 'lucide-react';
+import { Mail, MessageCircle } from 'lucide-react';
 
 const telegramHandle = "@bereketdesign"; 
 const contactEmail = "bereketdesigns@gmail.com";
-const calendlyUrl = "https://calendly.com/";
+// Note: We don't need the calendlyUrl variable anymore, we use the widget
 ---
 
 <BaseLayout>
@@ -22,7 +22,7 @@ const calendlyUrl = "https://calendly.com/";
 
     <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-20 relative z-10">
       
-      {/* Left Column: Info */}
+      {/* Left Column: Info & Calendar */}
       <div data-aos="fade-right">
         <h1 class="text-5xl md:text-7xl font-serif font-bold mb-8 text-white">
           Start Your <span class="text-gradient-gold">Project</span>
@@ -31,17 +31,20 @@ const calendlyUrl = "https://calendly.com/";
           Ready to elevate your brand? We are currently accepting new projects for the upcoming quarter.
         </p>
 
-        <div class="space-y-6">
-          <a href={calendlyUrl} target="_blank" class="flex items-center gap-6 group p-6 border border-white/5 bg-white/[0.02] rounded-2xl hover:bg-white/[0.05] hover:border-arkeon-gold/30 transition-all">
-            <div class="w-14 h-14 bg-white/5 rounded-full flex items-center justify-center group-hover:bg-arkeon-gold group-hover:text-arkeon-charcoal transition-colors border border-white/10">
-              <Calendar size={24} />
+        {/* CALENDLY EMBED */}
+        <div class="mb-12 border border-white/10 rounded-2xl overflow-hidden bg-white/[0.02] backdrop-blur-md">
+            <div class="p-6 border-b border-white/5 bg-white/5">
+                <h3 class="font-bold text-white text-lg flex items-center gap-2">
+                    📅 Schedule a Discovery Call
+                </h3>
+                <p class="text-sm text-gray-400">Select a time that works for you.</p>
             </div>
-            <div>
-              <h3 class="font-bold text-white text-lg">Book a Strategy Call</h3>
-              <p class="text-sm text-gray-400 group-hover:text-gray-300">20-minute intro call via Calendly</p>
-            </div>
-          </a>
+            <!-- Calendly Inline Widget -->
+            <div class="calendly-inline-widget" data-url="https://calendly.com/bereketdesigns/30min?hide_landing_page_details=1&background_color=1c1c1e&text_color=ffffff&primary_color=e6c55b" style="min-width:320px;height:500px;"></div>
+            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        </div>
 
+        <div class="space-y-6">
           <a href={`https://t.me/${telegramHandle.replace('@','')}`} target="_blank" class="flex items-center gap-6 group p-6 border border-white/5 bg-white/[0.02] rounded-2xl hover:bg-white/[0.05] hover:border-arkeon-gold/30 transition-all">
             <div class="w-14 h-14 bg-white/5 rounded-full flex items-center justify-center group-hover:bg-arkeon-gold group-hover:text-arkeon-charcoal transition-colors border border-white/10">
               <MessageCircle size={24} />
@@ -65,7 +68,7 @@ const calendlyUrl = "https://calendly.com/";
       </div>
 
       {/* Right Column: Form with Glassmorphism */}
-      <div class="bg-white/[0.03] backdrop-blur-md border border-white/10 p-8 md:p-10 rounded-3xl shadow-2xl relative" data-aos="fade-left">
+      <div class="bg-white/[0.03] backdrop-blur-md border border-white/10 p-8 md:p-10 rounded-3xl shadow-2xl relative h-fit" data-aos="fade-left">
         <div class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent rounded-3xl pointer-events-none"></div>
         <h2 class="text-2xl font-serif mb-8 text-white relative z-10">Send a message</h2>
         <div class="relative z-10">
