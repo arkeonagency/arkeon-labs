@@ -32,22 +32,21 @@ const currentPath = Astro.url.pathname;
       @font-face { font-family: 'Playfair Display'; font-display: swap; }
     </style>
 
-    {/* 2. NEW: Enable the Router */}
-    <ViewTransitions />
-    <!-- 1. GOOGLE ANALYTICS (GA4) -->
-    <!-- Replace G-XXXXXXXXXX with your actual ID -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWH8FBPTYE"></script>
-    <script>
+    {/* Preload Critical Fonts */}
+    <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/playfair-display-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- GOOGLE ANALYTICS (GA4) - Moved to Partytown -->
+    <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-KWH8FBPTYE"></script>
+    <script type="text/partytown">
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-KWH8FBPTYE');
     </script>
 
-    <!-- 2. MICROSOFT CLARITY (Heatmaps) -->
-    <!-- Replace "YOUR_CLARITY_ID" with the code from Microsoft -->
-    <script type="text/javascript">
+    <!-- MICROSOFT CLARITY - Moved to Partytown -->
+    <script type="text/partytown">
         (function(c,l,a,r,i,t,y){
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
             t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
@@ -72,7 +71,7 @@ const currentPath = Astro.url.pathname;
 
     <Footer client:visible />
     
-    <CookieBanner client:load />
+    <CookieBanner client:idle />
 
     <script>
       import AOS from 'aos';
