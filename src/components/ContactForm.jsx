@@ -110,9 +110,9 @@ export default function ContactForm() {
               className="w-full bg-white/5 border border-white/10 rounded p-3 text-white focus:border-arkeon-gold focus:outline-none focus:ring-1 focus:ring-arkeon-gold transition-all appearance-none cursor-pointer"
             >
               <option value="" disabled selected className="bg-arkeon-charcoal text-gray-500">Select a range</option>
-              <option value="Origin (Birr 10k - Birr 15k)" className="bg-arkeon-charcoal text-white">Origin (Birr 10k - Birr 15k)</option>
-              <option value="Evolution (Birr 17k - Birr 20k)" className="bg-arkeon-charcoal text-white">Evolution (Birr 17k - Birr 20k)</option>
-              <option value="Pinnacle (Birr 25k+)" className="bg-arkeon-charcoal text-white">Pinnacle (Birr 25k+)</option>
+              <option value="Origin (Birr 13k - Birr 17k)" className="bg-arkeon-charcoal text-white">Origin (Birr 13k - Birr 17k)</option>
+              <option value="Evolution (Birr 19k - Birr 24k)" className="bg-arkeon-charcoal text-white">Evolution (Birr 19k - Birr 24k)</option>
+              <option value="Pinnacle (Birr 30k+)" className="bg-arkeon-charcoal text-white">Pinnacle (Birr 30k+)</option>
               <option value="Custom / Not Sure" className="bg-arkeon-charcoal text-white">Custom / Not Sure</option>
             </select>
             <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-arkeon-gold">

@@ -3,61 +3,52 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Seo from '../components/Seo.jsx';
 import { getCollection } from 'astro:content';
 
-const posts = await getCollection('posts');
+// Fetch and sort posts by Date (Newest first)
+const posts = (await getCollection('posts')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
 ---
 
 <BaseLayout>
-  <Seo 
-    title="Insights" 
-    description="Design insights, case study breakdowns, and strategy articles from Arkeon." 
-  />
+  <Seo title="Insights" description="Thoughts on design and strategy." />
 
-  <section class="pt-32 pb-20 text-center relative">
-    {/* Ambient Glow */}
-    <div class="absolute top-0 right-1/4 w-[500px] h-[500px] bg-arkeon-blue/10 blur-[150px] rounded-full pointer-events-none"></div>
-
-    <div class="container mx-auto px-6 relative z-10">
-      <h1 class="text-5xl md:text-7xl font-serif mb-6 text-white">
-        <span class="text-gradient-gold">Insights</span>
-      </h1>
-      <p class="text-xl text-gray-300 mb-16 max-w-2xl mx-auto">
-        Thoughts on design, strategy, and the future of digital brands.
+  <section class="pt-32 pb-20">
+    <div class="container mx-auto px-6">
+      <h1 class="text-5xl md:text-7xl font-serif font-bold mb-6">Insights</h1>
+      <p class="text-xl text-arkeon-gray mb-16">
+        Strategies for brands that want to lead.
       </p>
-      
-      {/* Blog Grid */}
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-        {posts.map(post => (
-          <a href={`/blog/${post.slug}`} class="group block border border-white/5 rounded-2xl overflow-hidden bg-white/[0.02] backdrop-blur-sm hover:bg-white/[0.05] hover:border-arkeon-gold/30 hover:-translate-y-2 transition-all duration-500 shadow-lg">
-            <div class="aspect-video overflow-hidden relative">
-              <div class="absolute inset-0 bg-arkeon-charcoal/20 group-hover:bg-transparent transition-colors z-10"></div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {posts.map((post) => (
+          <a href={`/blog/${post.slug}`} class="group">
+            <div class="overflow-hidden rounded-xl mb-4 border border-white/10">
               <img 
-                src={post.data.heroImage} 
-                alt={post.data.title} 
-                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+                src={post.data.heroImage || "/images/placeholder.jpg"} 
+                alt={post.data.title}
+                class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
               />
             </div>
-            <div class="p-8">
-              <div class="flex justify-between items-center text-[10px] text-arkeon-gold mb-4 uppercase tracking-widest font-bold">
-                <span>{post.data.pubDate}</span>
-                <span>{post.data.author}</span>
-              </div>
-              <h2 class="text-2xl font-serif font-bold text-white mb-4 group-hover:text-arkeon-gold transition-colors leading-tight">
-                {post.data.title}
-              </h2>
-              <p class="text-gray-400 text-sm line-clamp-3 leading-relaxed">
-                {post.data.description}
-              </p>
+            <div class="flex items-center gap-2 text-xs text-arkeon-gold mb-2">
+              <time datetime={post.data.pubDate.toISOString()}>
+                {post.data.pubDate.toLocaleDateString('en-us', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                })}
+              </time>
+              <span>•</span>
+              <span>{post.data.author}</span>
             </div>
+            <h2 class="text-xl font-bold text-white group-hover:text-arkeon-gold transition-colors mb-2">
+              {post.data.title}
+            </h2>
+            <p class="text-sm text-gray-400 line-clamp-2">
+              {post.data.description}
+            </p>
           </a>
         ))}
       </div>
-
-      {posts.length === 0 && (
-        <div class="p-12 border border-dashed border-white/10 rounded-lg inline-block bg-white/5">
-          <p class="text-arkeon-gold font-mono mb-4">Writing in progress...</p>
-          <p class="text-gray-500 text-sm">Check back soon for updates.</p>
-        </div>
-      )}
     </div>
   </section>
 </BaseLayout>

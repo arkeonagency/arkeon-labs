@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Seo from '../components/Seo.jsx';
-import { Search, Map, Palette, Code, CheckCircle2, Rocket } from 'lucide-react';
+import { Search, Map, Palette, Code, CheckCircle2, Rocket, Hand } from 'lucide-react';
 
 const steps = [
   {
@@ -39,7 +39,14 @@ const steps = [
     title: "Launch",
     icon: Rocket,
     desc: "We handle the deployment, analytics setup, and provide training. We stay onboard to ensure everything runs smoothly."
+  },
+  {
+    number: "07",
+    title: "Training & Handover",
+    icon: Hand,
+    desc: "We don't just hand you the keys; we teach you how to drive. You receive a recorded video workshop teaching you how to use your CMS to update text, images, and blogs independently."
   }
+
 ];
 ---
 
@@ -96,14 +103,19 @@ const steps = [
                     {step.desc}
                   </p>
                </div>
+               
             </div>
+            
 
             {/* Empty Spacer for Desktop Balance */}
             <div class="hidden md:block flex-1"></div>
           </div>
+          
         ))}
       </div>
+      
     </div>
+    
   </section>
 
   {/* CTA */}

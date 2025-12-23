@@ -3,49 +3,114 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Seo from '../../components/Seo.jsx';
 
-// 1. Generate a new path for every collection entry
+// 1. Generate pages for every blog post
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
   return posts.map(entry => ({
-    params: { slug: entry.slug }, props: { entry },
+    params: { slug: entry.slug },
+    props: { entry },
   }));
 }
 
-// 2. Get the entry from props
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+
+// 2. Fetch "Read Next" suggestions
+const allPosts = await getCollection('posts');
+// Sort by date (newest first)
+const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+// Filter out the current post and take the next 3
+const nextPosts = sortedPosts
+  .filter(p => p.slug !== entry.slug)
+  .slice(0, 3);
 ---
 
 <BaseLayout>
   <Seo 
-    title={entry.data.title}
+    title={entry.data.title} 
     description={entry.data.description}
     image={entry.data.heroImage}
   />
 
   <article class="pt-32 pb-20">
-    <div class="container mx-auto px-6 max-w-3xl">
+    <div class="container mx-auto px-6 max-w-4xl">
       {/* Header */}
       <div class="text-center mb-12">
-        <span class="text-arkeon-gold text-sm font-bold uppercase tracking-widest mb-4 block">
-          {entry.data.pubDate}
-        </span>
-        <h1 class="text-4xl md:text-5xl font-serif font-bold mb-8 leading-tight">
+        <div class="flex items-center justify-center gap-2 text-arkeon-gold text-sm font-bold tracking-widest uppercase mb-4">
+          <time datetime={entry.data.pubDate.toISOString()}>
+            {entry.data.pubDate.toLocaleDateString('en-us', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </time>
+          <span>•</span>
+          <span>{entry.data.author}</span>
+        </div>
+        
+        <h1 class="text-4xl md:text-5xl font-serif font-bold text-white mb-8 leading-tight">
           {entry.data.title}
         </h1>
-        <div class="aspect-video w-full rounded-lg overflow-hidden mb-12">
-           <img src={entry.data.heroImage} alt={entry.data.title} class="w-full h-full object-cover" />
-        </div>
+        
+        {entry.data.heroImage && (
+          <img 
+            src={entry.data.heroImage} 
+            alt={entry.data.title} 
+            class="w-full h-auto rounded-xl border border-white/10 shadow-2xl"
+          />
+        )}
       </div>
-
-      {/* Content (Prose) */}
-      <div class="prose prose-invert prose-lg mx-auto prose-headings:font-serif prose-a:text-arkeon-gold hover:prose-a:text-white">
+      
+      {/* Article Content */}
+      <div class="prose prose-invert prose-lg mx-auto prose-a:text-arkeon-gold prose-headings:font-serif prose-headings:text-white prose-p:text-gray-300 prose-li:text-gray-300">
         <Content />
       </div>
 
-      <div class="mt-12 pt-8 border-t border-white/10 text-center">
-        <a href="/blog" class="text-sm font-bold text-gray-400 hover:text-white transition-colors">← Back to Insights</a>
+      {/* Author / Share Divider */}
+      <div class="border-t border-white/10 mt-16 pt-8 flex justify-between items-center">
+        <div class="text-gray-400 text-sm">
+          Written by <span class="text-white font-bold">{entry.data.author}</span>
+        </div>
+        <a href="/blog" class="text-arkeon-gold text-sm hover:underline">
+          ← Back to Insights
+        </a>
       </div>
     </div>
   </article>
+
+  {/* NEW: Read Next Section */}
+  {nextPosts.length > 0 && (
+    <section class="py-20 bg-black/20 border-t border-white/5">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-serif text-white mb-10">Read Next</h2>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+          {nextPosts.map((post) => (
+            <a href={`/blog/${post.slug}`} class="group block h-full">
+              <article class="bg-white/5 border border-white/10 rounded-xl overflow-hidden h-full hover:border-arkeon-gold/50 transition-colors">
+                <div class="aspect-video overflow-hidden">
+                  <img 
+                    src={post.data.heroImage || "/images/placeholder.jpg"} 
+                    alt={post.data.title}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div class="p-6">
+                  <div class="flex items-center gap-2 text-xs text-arkeon-gold mb-3">
+                    <time datetime={post.data.pubDate.toISOString()}>
+                      {post.data.pubDate.toLocaleDateString('en-us', { month: 'short', day: 'numeric' })}
+                    </time>
+                    <span>•</span>
+                    <span>{post.data.author}</span>
+                  </div>
+                  <h3 class="text-xl font-bold text-white mb-3 group-hover:text-arkeon-gold transition-colors line-clamp-2">
+                    {post.data.title}
+                  </h3>
+                  <p class="text-sm text-gray-400 line-clamp-2">
+                    {post.data.description}
+                  </p>
+                </div>
+              </article>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 </BaseLayout>

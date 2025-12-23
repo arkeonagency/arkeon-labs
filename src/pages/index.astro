@@ -4,12 +4,21 @@ import Hero from '../components/Hero.jsx';
 import Seo from '../components/Seo.jsx';
 import CaseStudyCard from '../components/CaseStudyCard.jsx';
 import LogoMarquee from '../components/LogoMarquee.jsx';
+import { getCollection } from 'astro:content';
+import TestimonialMarquee from '../components/TestimonialMarquee.jsx';
 import { Image } from 'astro:assets'; // NEW: Image optimization
+
+// Fetch the data from the CMS
+const testimonials = await getCollection('testimonials');
+const allWork = await getCollection('case-studies');
+const featuredWork = allWork.slice(0, 3);
 
 // Import images directly for optimization
 import amanHero from '../assets/images/aman.jpg';
 import nouraHero from '../assets/images/noura.jpg';
 import divinexHero from '../assets/images/divinex.jpg';
+
+
 ---
 
 <BaseLayout>
@@ -68,50 +77,25 @@ import divinexHero from '../assets/images/divinex.jpg';
     </div>
   </section>
 
-  {/* Featured Work - OPTIMIZED IMAGES */}
-  <section class="py-32 bg-black/30 border-y border-white/5 relative">
-    <div class="absolute top-0 right-0 w-[300px] h-[300px] bg-arkeon-blue/20 blur-[120px] rounded-full pointer-events-none"></div>
-
-    <div class="container mx-auto px-6 relative z-10">
-      <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
-        <div>
-           <span class="text-arkeon-gold text-xs font-bold tracking-widest uppercase mb-2 block">Portfolio</span>
-           <h2 class="text-4xl md:text-5xl font-serif text-white">Selected Work</h2>
-        </div>
-        <a href="/work" class="text-sm text-gray-400 hover:text-white border-b border-white/20 pb-1 hover:border-white transition-all">View all projects →</a>
+  {/* Featured Work */}
+  <section class="py-24 bg-black/20">
+    <div class="container mx-auto px-6">
+      <div class="flex justify-between items-end mb-12">
+        <h2 class="text-4xl font-serif">Selected Work</h2>
+        <a href="/work" class="text-sm text-arkeon-gray hover:text-white">View all projects →</a>
       </div>
-      <div class="grid md:grid-cols-3 gap-10">
-        
-        {/* MANUAL CARD: Aman Dental */}
-        <a href="/work/aman-dental" class="group block relative overflow-hidden rounded-lg aspect-[4/3]">
-          <Image src={amanHero} alt="Aman Dental" width={800} quality="80" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition-opacity duration-300" />
-          <div class="absolute bottom-0 left-0 w-full p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-            <span class="text-arkeon-gold text-xs font-medium uppercase tracking-wider mb-2 block">Healthcare</span>
-            <h3 class="text-2xl font-serif text-white font-bold">Aman Dental</h3>
-          </div>
-        </a>
-
-        {/* MANUAL CARD: Noura */}
-        <a href="/work/noura-skincare" class="group block relative overflow-hidden rounded-lg aspect-[4/3]">
-          <Image src={nouraHero} alt="NOURA Skincare" width={800} quality="80" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition-opacity duration-300" />
-          <div class="absolute bottom-0 left-0 w-full p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-            <span class="text-arkeon-gold text-xs font-medium uppercase tracking-wider mb-2 block">E-Commerce</span>
-            <h3 class="text-2xl font-serif text-white font-bold">NOURA Skincare</h3>
-          </div>
-        </a>
-
-        {/* MANUAL CARD: DivineX */}
-        <a href="/work/divinex-agency" class="group block relative overflow-hidden rounded-lg aspect-[4/3]">
-          <Image src={divinexHero} alt="DivineX Agency" width={800} quality="80" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition-opacity duration-300" />
-          <div class="absolute bottom-0 left-0 w-full p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-            <span class="text-arkeon-gold text-xs font-medium uppercase tracking-wider mb-2 block">Creative</span>
-            <h3 class="text-2xl font-serif text-white font-bold">DivineX Agency</h3>
-          </div>
-        </a>
-
+      
+      {/* Dynamic Grid */}
+      <div class="grid md:grid-cols-3 gap-8">
+        {featuredWork.map((project) => (
+          <CaseStudyCard 
+            client:visible
+            title={project.data.title}
+            category={project.data.service || "Case Study"}
+            image={project.data.heroImage}
+            href={`/work/${project.slug}`} 
+          />
+        ))}
       </div>
     </div>
   </section>
@@ -147,44 +131,11 @@ import divinexHero from '../assets/images/divinex.jpg';
     </div>
   </section>
 
-  {/* Testimonials - Infinite Marquee */}
-  <section class="py-24 relative overflow-hidden">
-    <div class="absolute inset-0 bg-white/[0.02]"></div>
-    <div class="container mx-auto px-6 mb-12 text-center relative z-10">
-       <h2 class="text-3xl font-serif text-white">Client Stories</h2>
-    </div>
-    <div class="absolute top-0 bottom-0 left-0 w-24 z-20 bg-gradient-to-r from-arkeon-charcoal to-transparent pointer-events-none"></div>
-    <div class="absolute top-0 bottom-0 right-0 w-24 z-20 bg-gradient-to-l from-arkeon-charcoal to-transparent pointer-events-none"></div>
-
-    <div class="relative w-full overflow-hidden">
-      <div class="flex gap-8 w-max animate-scroll hover:pause">
-        {[...Array(2)].map(() => (
-          <>
-            {[
-              { quote: "Arkeon transformed our website into a true brand asset. The attention to detail is unmatched.", author: "Sarah Jenkins", role: "CEO, Horizon Labs" },
-              { quote: "The best investment we made this year. They understood our luxury positioning perfectly.", author: "David Alazar", role: "Founder, Aman Dental" },
-              { quote: "Technical perfection. Our site loads instantly and our SEO ranking skyrocketed.", author: "Michael Ross", role: "CTO, FinTech Global" },
-              { quote: "They don't just build websites, they build businesses. The strategy phase was eye-opening.", author: "Elena K.", role: "Director, Noura Skincare" }
-            ].map((item) => (
-              <div class="w-[350px] md:w-[450px] p-8 md:p-10 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-md flex-shrink-0 hover:border-arkeon-gold/30 transition-colors cursor-default">
-                <div class="flex gap-1 mb-4">{[1,2,3,4,5].map(() => <span class="text-arkeon-gold text-sm">★</span>)}</div>
-                <p class="text-lg text-gray-200 font-serif italic mb-6 leading-relaxed">"{item.quote}"</p>
-                <div class="flex items-center gap-4">
-                  <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gray-700 to-black border border-white/10 flex items-center justify-center text-xs font-bold text-white">{item.author.charAt(0)}</div>
-                  <div><p class="text-white text-sm font-bold">{item.author}</p><p class="text-arkeon-gold text-xs uppercase tracking-wider">{item.role}</p></div>
-                </div>
-              </div>
-            ))}
-          </>
-        ))}
-      </div>
-    </div>
-    <style>
-      @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-      .animate-scroll { animation: scroll 40s linear infinite; }
-      .hover\:pause:hover { animation-play-state: paused; }
-    </style>
+  {/* Testimonials */}
+  <section>
+    <TestimonialMarquee client:load testimonials={testimonials} />
   </section>
+  
 
   {/* Footer CTA */}
   <section class="py-40 text-center relative overflow-hidden">

@@ -11,7 +11,20 @@
           "type": "string"
         },
         "pubDate": {
-          "type": "string"
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
         },
         "heroImage": {
           "type": "string"
@@ -26,10 +39,9 @@
       },
       "required": [
         "title",
-        "description",
         "pubDate"
       ],
-      "additionalProperties": false
+      "additionalProperties": true
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#"

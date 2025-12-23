@@ -1,28 +1,23 @@
 {
-  "$ref": "#/definitions/case-studies",
+  "$ref": "#/definitions/testimonials",
   "definitions": {
-    "case-studies": {
+    "testimonials": {
       "type": "object",
       "properties": {
-        "title": {
+        "author": {
           "type": "string"
         },
-        "description": {
+        "role": {
           "type": "string"
         },
-        "client": {
+        "quote": {
           "type": "string"
         },
-        "service": {
-          "type": "string"
+        "rating": {
+          "type": "number",
+          "default": 5
         },
-        "outcome": {
-          "type": "string"
-        },
-        "heroImage": {
-          "type": "string"
-        },
-        "websiteUrl": {
+        "avatar": {
           "type": "string"
         },
         "$schema": {
@@ -30,9 +25,11 @@
         }
       },
       "required": [
-        "title"
+        "author",
+        "role",
+        "quote"
       ],
-      "additionalProperties": true
+      "additionalProperties": false
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#"
