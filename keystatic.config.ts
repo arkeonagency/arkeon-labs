@@ -1,7 +1,15 @@
 import { config, fields, collection } from '@keystatic/core';
 
+const isVercel = import.meta.env.PROD || process.env.VERCEL === '1';
+
 export default config({
-  storage: {
+  storage: isVercel
+    ? {
+
+        kind: 'github',
+        repo: 'arkeonagency/arkeon-studio-site',
+    }
+    :{
     kind: 'local',
   },
   collections: {
