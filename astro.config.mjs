@@ -13,7 +13,7 @@ export default defineConfig({
   
   // FIX 2: Changed to 'static'. 
   // The Vercel adapter will still allow the CMS to run dynamically.
-  output: 'static', 
+  output: 'server', 
   adapter: vercel({
     webAnalytics: { enabled: true } // Bonus: Free Vercel Analytics
   }),
