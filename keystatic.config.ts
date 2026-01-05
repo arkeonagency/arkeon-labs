@@ -1,13 +1,11 @@
 import { config, fields, collection } from '@keystatic/core';
 
-import.meta.env.PROD || process.env.VERCEL === '1';
-
 export default config({
   storage: import.meta.env.PROD
     ? {
 
         kind: 'github',
-        repo: 'arkeonagency/arkeon-studio-site',
+        repo: 'arkeonagency/arkeon-design-website',
     }
     :{
     kind: 'local',
