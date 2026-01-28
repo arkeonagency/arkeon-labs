@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Seo from '../components/Seo.jsx';
 import { PenTool, Monitor, Code2, ArrowRight, Zap, Search, Layout, TrendingUp, Users } from 'lucide-react';
@@ -32,20 +34,20 @@ const packages = [
   {
     name: "Origin",
     desc: "Instant credibility for founders who need to move fast.",
-    price: "ETB 25,000", // Updated to agreed pricing
+    price: "Birr 25,000", // Updated to agreed pricing
     idealFor: "Seed Stage • Consultants • Validation"
   },
   {
     name: "Evolution",
     desc: "A scalable content engine to build authority & rank.",
-    price: "ETB 35,000",
+    price: "Birr 35,000",
     idealFor: "Growing SMEs • Medical • E-Commerce",
     highlight: true
   },
   {
     name: "Pinnacle",
     desc: "Industry dominance via immersive interactive experiences.",
-    price: "ETB 56,000+",
+    price: "Birr 56,000+",
     idealFor: "Market Leaders • Venture SaaS • Luxury"
   }
 ];
@@ -218,7 +220,7 @@ const packages = [
             <span class="text-arkeon-gold">✓</span> Uptime Monitoring & Security Patches
           </li>
         </ul>
-        <div class="text-2xl font-bold text-white mb-1">ETB 5,000 <span class="text-sm font-normal text-gray-500">/ month</span></div>
+        <div class="text-2xl font-bold text-white mb-1">Birr 5,000 <span class="text-sm font-normal text-gray-500">/ month</span></div>
       </div>
       <div class="bg-arkeon-charcoal p-8 rounded-xl border border-white/10 relative overflow-hidden">
         <div class="absolute -right-10 -top-10 w-40 h-40 bg-arkeon-gold/20 rounded-full blur-3xl"></div>

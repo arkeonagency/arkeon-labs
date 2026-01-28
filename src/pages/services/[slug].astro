@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Seo from '../../components/Seo.jsx';
 import { CheckCircle2, ArrowRight, Zap, Gem, Layers } from 'lucide-react';
@@ -9,7 +11,7 @@ export async function getStaticPaths() {
       slug: 'origin',
       name: 'Origin',
       tag: 'The Starter',
-      price: 'Birr 13k - Birr 17k',
+      price: 'Birr 25k',
       heroDesc: "A powerful narrative start for businesses ready to leave the template world behind.",
       icon: Zap,
       difference: "Most starter packages are just WordPress templates filled with lorem ipsum. Origin is different. We build a custom-coded foundation based on your unique story. It is lightweight, incredibly fast, and designed to scale as you grow.",
@@ -24,13 +26,13 @@ export async function getStaticPaths() {
         "1 Week Post-Launch Support"
       ],
       idealFor: "Consultants, Solopreneurs, Seed-Stage Startups",
-      timeline: "2 Weeks"
+      timeline: "3 Weeks"
     },
     {
       slug: 'evolution',
       name: 'Evolution',
       tag: 'The Growth Engine',
-      price: 'Birr 19k - Birr 24k',
+      price: 'Birr 35k',
       heroDesc: "A robust, scalable platform designed for content marketing, SEO, and high conversion.",
       icon: Layers,
       difference: "Evolution is for companies that need more than a brochure; they need a machine. We integrate a headless CMS so you can manage content without touching code, add subtle motion design to guide user attention, and implement technical SEO architecture that Google loves.",
@@ -51,7 +53,7 @@ export async function getStaticPaths() {
       slug: 'pinnacle',
       name: 'Pinnacle',
       tag: 'The Luxury Experience',
-      price: 'Birr 30k+',
+      price: 'Birr 56k+',
       heroDesc: "A complete brand immersion using 3D elements, micro-interactions, and sensory design.",
       icon: Gem,
       difference: "Pinnacle is where we break the rules. This is for market leaders who cannot afford to look like their competitors. We use WebGL, custom soundscapes (optional), and fluid page transitions to create a site that feels like a software application rather than a document.",

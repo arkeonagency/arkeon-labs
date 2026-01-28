@@ -5,7 +5,8 @@ const items = [
   { type: 'image', src: '/images/logos/aman.svg', alt: 'Aman Dental' },
   { type: 'image', src: '/images/logos/nouralogo.svg', alt: 'NOURA' },
   //{ type: 'image', src: '/images/logos/divinexlogo.svg', alt: 'DivineX' },
-  
+  { type: 'image', src: '/images/logos/arklaunch.svg', alt: 'ArkLaunch' },
+  { type: 'image', src: '/images/logos/loa.svg', alt: 'Life Of Aviation' },
   // TEXT BRANDS (Fillers)
   { type: 'text', label: "divinex" }
 ];
