@@ -1,144 +1,164 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Seo from '../components/Seo.jsx';
-import { Check, User } from 'lucide-react';
 
-const pricingData = [
+// HORMZI OFFER DATA
+const offers = [
   {
-    name: "Origin",
-    price: "Birr 13k - Birr 17k",
-    desc: "For startups needing a powerful narrative start.",
-    // NEW: Specific Ideal Businesses
-    idealFor: ["Local Consultants", "Early-Stage Startups"],
-    features: [
-      "1–3 Pages",
-      "Narrative-driven Homepage",
-      "Responsive Design",
-      "Basic SEO Setup",
-      "Contact Form Integration"
-    ]
-  },
-  {
-    name: "Evolution",
-    price: "Birr 19k - Birr 24k",
-    desc: "For growing brands needing SEO & interactions.",
-    // NEW: Specific Ideal Businesses
-    idealFor: ["Medical/Legal Firms", "Growing E-Commerce"],
-    features: [
-      "5–7 Pages",
-      "CMS for Blog/Case Studies",
-      "Advanced Animations",
-      "SEO & Analytics",
-      "Newsletter Integration"
+    name: "ORIGIN",
+    subtitle: "Brand Foundation Accelerator",
+    price: "ETB 25,000",
+    timeline: "2 Weeks",
+    scarcity: "Limited to 10 spots/month",
+    outcome: "A high-performance narrative website that positions you as credible and ready to convert immediately.",
+    deliverables: [
+      "Narrative Landing Page (High Conversion)",
+      "Visual Strategy Session",
+      "Mobile-First Performance Architecture",
+      "Lead Capture System"
     ],
-    highlight: true
+    bonuses: [
+      "🎁 SEO Starter Pack (Google Indexing)",
+      "🎁 14-Day 'Conversion Boost' Video Strategy",
+      "🎁 Launch Checklist PDF"
+    ],
+    guarantee: "30-Day Performance Warranty: We revise for free until you pass Google Core Web Vitals.",
+    cta: "Secure Origin Spot"
   },
   {
-    name: "Pinnacle",
-    price: "Birr 30k+",
-    desc: "Full brand & digital experience for luxury players.",
-    // NEW: Specific Ideal Businesses
-    idealFor: ["Venture-Backed SaaS", "Luxury Hospitality"],
-    features: [
-      "Full Brand Identity System",
-      "Custom Web App Features",
-      "Complex Interactions",
-      "Content Strategy",
-      "Monthly Retainer Option"
-    ]
+    name: "EVOLUTION",
+    subtitle: "Growth Website Engine",
+    price: "ETB 35,000",
+    timeline: "4–6 Weeks",
+    scarcity: "Only 5 builds per cohort",
+    highlight: true,
+    outcome: "A multi-page conversion machine that educates audience, increases authority, and supports scaling.",
+    deliverables: [
+      "Multi-Page Structure (5-7 Pages)",
+      "CMS Integration (Own your content)",
+      "Advanced Motion & Interaction",
+      "Technical SEO & Analytics Suite"
+    ],
+    bonuses: [
+      "🎁 90-Day Content Playbook",
+      "🎁 Competitor UX Leak Report",
+      "🎁 Analytics + Clarity Training Call"
+    ],
+    guarantee: "90-Day Growth Support: Free conversion iteration if engagement targets aren't met.",
+    cta: "Apply for Evolution"
+  },
+  {
+    name: "PINNACLE",
+    subtitle: "Interactive Brand Experience",
+    price: "ETB 56,000+",
+    timeline: "8–12 Weeks",
+    scarcity: "Strictly 2 builds per year",
+    outcome: "A best-in-class digital asset that positions you as an industry leader above all competitors.",
+    deliverables: [
+      "Unlimited Custom Templates",
+      "Immersive WebGL / 3D Interactions",
+      "App-Like Navigation (View Transitions)",
+      "Custom Web Tools (Calculators/Portals)"
+    ],
+    bonuses: [
+      "🎁 Quarterly Conversion Audits",
+      "🎁 VIP Priority Support Queue",
+      "🎁 Launch Campaign Blueprint"
+    ],
+    guarantee: "Performance Premium: If it doesn't outperform your old metrics in 90 days, we redesign the main ux for free.",
+    cta: "Inquire for Pinnacle"
   }
 ];
 ---
 
 <BaseLayout>
   <Seo 
-    title="Pricing" 
-    description="Transparent pricing for Arkeon's web design and branding packages." 
+    title="Offers & Pricing" 
+    description="Strategic digital offers designed for high ROI. Guaranteed performance and scarcity-based availability." 
   />
 
-  <section class="pt-32 pb-20 text-center relative overflow-hidden">
-    {/* Ambient Glows */}
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-arkeon-gold/5 blur-[120px] rounded-full pointer-events-none"></div>
-
-    <div class="container mx-auto px-6 relative z-10">
-      <h1 class="text-5xl md:text-7xl font-serif mb-6 text-white">
-        Investment
-      </h1>
-      <p class="text-gray-300 max-w-2xl mx-auto mb-16 text-lg">
-        We value transparency. While every project is unique, these ranges provide a baseline for our partnership tiers.
+  <section class="pt-32 pb-20 text-center">
+    <div class="container mx-auto px-6">
+      <span class="text-arkeon-gold font-bold tracking-widest uppercase text-sm mb-4 block">The Value Equation</span>
+      <h1 class="text-5xl md:text-7xl font-serif mb-8">Invest in Outcomes,<br/>Not Just Code.</h1>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-16">
+        We don't sell "websites." We sell digital assets that build trust, authority, and revenue. Choose the transformation that fits your current stage.
       </p>
 
-      {/* Pricing Table */}
-      <div class="grid md:grid-cols-3 gap-8 text-left max-w-6xl mx-auto">
-        {pricingData.map((tier, i) => (
-          <div 
-            class={`flex flex-col p-8 rounded-2xl border backdrop-blur-md transition-all duration-500 hover:-translate-y-2 group ${
-              tier.highlight 
-                ? 'border-arkeon-gold/40 bg-arkeon-gold/5 shadow-[0_0_40px_rgba(230,197,91,0.1)]' 
-                : 'border-white/10 bg-white/[0.02] hover:bg-white/[0.05]'
-            }`}
-          >
-            {tier.highlight && (
-                <div class="mb-4">
-                    <span class="bg-arkeon-gold text-arkeon-charcoal text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Most Popular</span>
-                </div>
-            )}
-            <h3 class="text-2xl font-serif mb-2 text-white group-hover:text-arkeon-gold transition-colors">{tier.name}</h3>
-            <div class={`text-3xl font-bold mb-4 ${tier.highlight ? 'text-arkeon-gold' : 'text-gray-200'}`}>{tier.price}</div>
-            <p class="text-sm text-gray-400 mb-6 leading-relaxed h-10">{tier.desc}</p>
+      {/* OFFER STACK GRID */}
+      <div class="grid lg:grid-cols-3 gap-8 text-left max-w-7xl mx-auto">
+        {offers.map((offer) => (
+          <div class={`relative flex flex-col p-8 rounded-2xl border ${offer.highlight ? 'border-arkeon-gold bg-arkeon-gold/5 ring-1 ring-arkeon-gold/50' : 'border-white/10 bg-white/5'} transition-transform hover:-translate-y-1 duration-300`}>
             
-            {/* Ideal For Section */}
-            <div class="mb-8 p-4 bg-white/5 rounded-lg border border-white/5">
-                <p class="text-[10px] text-arkeon-gold uppercase tracking-widest mb-3 font-bold flex items-center gap-2">
-                    <User size={12} /> Ideal For
-                </p>
-                <div class="flex flex-wrap gap-2">
-                    {tier.idealFor.map(biz => (
-                        <span class="text-xs text-white bg-white/10 px-2 py-1 rounded border border-white/10">{biz}</span>
-                    ))}
-                </div>
+            {/* Scarcity Tag */}
+            <div class="absolute top-0 right-0 bg-white/10 px-3 py-1 rounded-bl-xl rounded-tr-xl text-xs font-mono text-arkeon-gold border-l border-b border-white/10">
+              {offer.scarcity}
             </div>
-            
-            <ul class="space-y-4 mb-8 border-t border-white/10 pt-6 flex-grow">
-              {tier.features.map(feat => (
-                <li class="flex items-start gap-3 text-sm text-gray-300">
-                  <span class="text-arkeon-gold mt-0.5"><Check size={14} /></span> {feat}
-                </li>
-              ))}
-            </ul>
-            
-            <a href="/contact" class={`block w-full text-center py-4 rounded-xl font-bold text-sm transition-all shadow-lg ${
-              tier.highlight 
-                ? 'bg-arkeon-gold text-arkeon-charcoal hover:bg-white hover:scale-105' 
-                : 'bg-white/10 text-white hover:bg-white hover:text-arkeon-charcoal'
-            }`}>
-              Inquire
+
+            {/* Header */}
+            <div class="mb-6 border-b border-white/10 pb-6">
+              <h3 class="text-2xl font-serif text-white">{offer.name}</h3>
+              <p class="text-sm text-arkeon-gold font-bold uppercase tracking-wider mb-2">{offer.subtitle}</p>
+              <div class="text-3xl font-bold text-white mt-4">{offer.price}</div>
+              <p class="text-xs text-gray-500 mt-1">Timeline: {offer.timeline}</p>
+            </div>
+
+            {/* Dream Outcome */}
+            <div class="mb-8">
+              <p class="text-gray-300 text-sm leading-relaxed italic">"{offer.outcome}"</p>
+            </div>
+
+            {/* Deliverables */}
+            <div class="mb-8 flex-grow">
+              <h4 class="text-sm font-bold text-white mb-4 uppercase">Core Stack</h4>
+              <ul class="space-y-3">
+                {offer.deliverables.map(item => (
+                  <li class="flex items-start gap-2 text-sm text-gray-400">
+                    <span class="text-arkeon-gold mt-1">✓</span> {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Bonuses (The Value Add) */}
+            <div class="mb-8 bg-black/20 p-4 rounded-lg border border-white/5">
+              <h4 class="text-sm font-bold text-arkeon-gold mb-3 uppercase">Strategic Bonuses</h4>
+              <ul class="space-y-2">
+                {offer.bonuses.map(item => (
+                  <li class="text-xs text-gray-300 flex gap-2">
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Risk Reversal (Guarantee) */}
+            <div class="mb-8">
+              <div class="flex items-start gap-2">
+                <div class="min-w-[4px] h-full bg-green-500/50 rounded-full"></div>
+                <p class="text-xs text-gray-400">
+                  <span class="text-green-400 font-bold block mb-1">Risk Reversal:</span>
+                  {offer.guarantee}
+                </p>
+              </div>
+            </div>
+
+            {/* CTA */}
+            <a href="/contact" class={`block w-full text-center py-4 rounded-lg font-bold text-sm uppercase tracking-wide ${offer.highlight ? 'bg-arkeon-gold text-arkeon-charcoal hover:bg-white' : 'bg-white/10 hover:bg-white text-white hover:text-charcoal'} transition-all`}>
+              {offer.cta}
             </a>
           </div>
         ))}
       </div>
-    </div>
-  </section>
-
-  {/* FAQ Section */}
-  <section class="py-24 border-t border-white/5 relative">
-    <div class="container mx-auto px-6 max-w-3xl relative z-10">
-      <h2 class="text-3xl font-serif mb-12 text-center text-white">Common Questions</h2>
       
-      <div class="space-y-10">
-        <div class="bg-white/[0.02] border border-white/5 p-8 rounded-xl hover:border-white/10 transition-colors">
-          <h3 class="text-xl font-bold text-white mb-3">What are the payment terms?</h3>
-          <p class="text-gray-400 leading-relaxed">We typically require a 50% deposit to secure your slot in our schedule, with the remaining 50% due upon project completion and before final hand-off.</p>
-        </div>
-        <div class="bg-white/[0.02] border border-white/5 p-8 rounded-xl hover:border-white/10 transition-colors">
-          <h3 class="text-xl font-bold text-white mb-3">Do you do hourly work?</h3>
-          <p class="text-gray-400 leading-relaxed">We prefer project-based pricing as it focuses on value and deliverables rather than time. However, for ongoing maintenance, we offer monthly retainer packages.</p>
-        </div>
-        <div class="bg-white/[0.02] border border-white/5 p-8 rounded-xl hover:border-white/10 transition-colors">
-          <h3 class="text-xl font-bold text-white mb-3">What platform do you use?</h3>
-          <p class="text-gray-400 leading-relaxed">We specialize in Astro and React for high-performance, custom-coded sites. We can also integrate headless CMS solutions if you need to edit content frequently without touching code.</p>
-        </div>
+      {/* Domain Ownership Note */}
+      <div class="mt-16 bg-white/[0.02] border border-white/5 p-8 rounded-xl max-w-3xl mx-auto">
+        <h3 class="text-lg font-bold text-white mb-2">Note on Domain Ownership</h3>
+        <p class="text-gray-400 text-sm">
+          We believe you should hold the "Title Deed" to your digital property. Domain names (e.g., yourbrand.com) are purchased directly by you (approx $15/yr) so you retain 100% legal ownership. We provide a <strong>Concierge Service</strong> to handle all the technical DNS setup for you on the call.
+        </p>
       </div>
+
     </div>
   </section>
 </BaseLayout>

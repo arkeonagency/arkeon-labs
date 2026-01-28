@@ -9,7 +9,7 @@ import vercel from '@astrojs/vercel'; // <--- FIX 1: Updated Import
 import markdoc from '@astrojs/markdoc';
 
 export default defineConfig({
-  site: 'https://arkeon-studio.vercel.app',
+  site: 'https://arkeon.com.et',
   
   // FIX 2: Changed to 'static'. 
   // The Vercel adapter will still allow the CMS to run dynamically.

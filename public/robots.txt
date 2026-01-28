@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://arkeon-studio.vercel.app/sitemap-index.xml
+Sitemap: https://arkeon.com.et/sitemap-index.xml

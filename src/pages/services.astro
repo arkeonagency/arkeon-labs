@@ -1,59 +1,60 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Seo from '../components/Seo.jsx';
-import { PenTool, Monitor, Code2, ArrowRight, Zap, Search, Layout } from 'lucide-react';
+import { PenTool, Monitor, Code2, ArrowRight, Zap, Search, Layout, TrendingUp, Users } from 'lucide-react';
 import { Image } from 'astro:assets';
+// Make sure these paths match your actual project structure
 import alldevice from '../assets/images/alldevice.jpg';
 import strategy from '../assets/images/strategy.jpg';
 
 const services = [
   {
     icon: PenTool,
-    title: "Brand Identity",
-    desc: "A brand is more than a logo. It is the gut feeling a person has about your product.",
-    details: ["Visual Strategy", "Logo Design", "Typography Systems", "Voice & Tone", "Brand Guidelines"]
+    title: "Strategic Differentiation", // Was Brand Identity
+    desc: "We don't just make it 'look nice'. We engineer the gut feeling that allows you to charge premium prices.",
+    details: ["Market Positioning", "Visual Authority", "Voice Engineering", "Premium Assets", "Brand Guidelines"]
   },
   {
     icon: Monitor,
-    title: "UI/UX Design",
-    desc: "We design interfaces that are intuitive, accessible, and delight users at every touchpoint.",
-    details: ["Wireframing", "High-Fidelity UI", "Interactive Prototypes", "Design Systems", "Motion Design"]
+    title: "Conversion Architecture", // Was UI/UX
+    desc: "Design isn't art; it's a funnel. We build frictionless interfaces that guide users inevitably to the 'Buy' button.",
+    details: ["Thumb-Zone Layouts", "High-Fidelity UI", "Purchase Psychology", "Mobile-First Logic", "Motion Triggers"]
   },
   {
     icon: Code2,
-    title: "Web Development",
-    desc: "Pixel-perfect implementation using modern architectures for speed and scalability.",
-    details: ["Astro + React", "Headless CMS", "Animation (GSAP/Framer)", "SEO Optimization", "Performance Tuning"]
+    title: "Technical Velocity", // Was Web Development
+    desc: "Speed is a revenue metric. We build zero-bloat engines that load in <0.8s, ensuring no lead is lost to loading screens.",
+    details: ["Astro Architecture", "Zero JavaScript Core", "Global CDN", "Technical SEO", "Security Hardening"]
   }
 ];
 
 const packages = [
   {
     name: "Origin",
-    desc: "For startups needing a powerful narrative start.",
-    price: "From Birr 13k - Birr 17k",
-    idealFor: "Seed Stage • Solopreneurs • Local Consultants • Early-Stage Startups"
+    desc: "Instant credibility for founders who need to move fast.",
+    price: "ETB 25,000", // Updated to agreed pricing
+    idealFor: "Seed Stage • Consultants • Validation"
   },
   {
     name: "Evolution",
-    desc: "For growing brands needing SEO & complex interactions.",
-    price: "From Birr 19k - Birr 24k",
-    idealFor: "Growth Stage • SMEs • Medical/Legal Firms • Growing E-Commerce",
+    desc: "A scalable content engine to build authority & rank.",
+    price: "ETB 35,000",
+    idealFor: "Growing SMEs • Medical • E-Commerce",
     highlight: true
   },
   {
     name: "Pinnacle",
-    desc: "Full brand & digital experience for luxury players.",
-    price: "From Birr 30k+",
-    idealFor: "Established • Luxury Brands• Venture-Backed SaaS • Luxury Hospitality"
+    desc: "Industry dominance via immersive interactive experiences.",
+    price: "ETB 56,000+",
+    idealFor: "Market Leaders • Venture SaaS • Luxury"
   }
 ];
 ---
 
 <BaseLayout>
   <Seo 
-    title="Capabilities" 
-    description="Strategic branding, UI/UX design, and modern web development services by Arkeon." 
+    title="Services" 
+    description="We build digital assets that convert. Narrative websites, CMS engines, and interactive brand experiences." 
   />
 
   {/* HERO */}
@@ -61,10 +62,10 @@ const packages = [
     <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-arkeon-gold/10 blur-[120px] rounded-full pointer-events-none"></div>
     <div class="container mx-auto px-6 text-center relative z-10">
       <h1 class="text-5xl md:text-7xl font-serif mb-6 text-white">
-        Capabilities & <span class="text-gradient-gold">Craft</span>
+        From Website to <br /><span class="text-gradient-gold">Digital Asset</span>
       </h1>
       <p class="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-        We bridge the gap between strategic thinking and technical excellence. We don't just build websites; we build digital assets that drive business growth.
+        Most agencies sell code. We sell outcomes. We build high-performance engines designed to build trust, increase leads, and elevate authority.
       </p>
     </div>
   </section>
@@ -83,7 +84,7 @@ const packages = [
               <s.icon size={24} />
             </div>
             <h3 class="text-2xl font-serif text-white mb-4">{s.title}</h3>
-            <p class="text-gray-400 mb-8 leading-relaxed h-24">{s.desc}</p>
+            <p class="text-gray-400 mb-8 leading-relaxed h-20 text-sm">{s.desc}</p>
             <ul class="space-y-3 border-t border-white/5 pt-6">
               {s.details.map(item => (
                 <li class="flex items-center gap-2 text-sm text-gray-300">
@@ -101,21 +102,21 @@ const packages = [
   <section class="py-24 border-t border-white/5 relative overflow-hidden">
     <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
       <div data-aos="fade-right">
-        <span class="text-arkeon-gold text-sm font-bold uppercase tracking-widest mb-2 block">The Foundation</span>
-        <h2 class="text-4xl font-serif text-white mb-6">Strategy Before Pixels</h2>
+        <span class="text-arkeon-gold text-sm font-bold uppercase tracking-widest mb-2 block">The Psychology</span>
+        <h2 class="text-4xl font-serif text-white mb-6">Narrative Before Pixels</h2>
         <p class="text-gray-300 mb-6 leading-relaxed">
-          Most agencies jump straight to design. We start with the "Why." Before we draw a single wireframe, we define your user personas, your market positioning, and your conversion goals.
+          We don't use templates. We structure your site like a sales letter. We define the "Villain" in your customer's life and position your brand as the only logical "Hero."
         </p>
         <div class="grid grid-cols-2 gap-6 mt-8">
             <div class="bg-white/5 p-4 rounded-lg">
-                <Search className="text-arkeon-gold mb-3" size={24} />
-                <h4 class="text-white font-bold mb-1">Discovery</h4>
-                <p class="text-xs text-gray-400">Market research & competitor analysis.</p>
+                <Users className="text-arkeon-gold mb-3" size={24} />
+                <h4 class="text-white font-bold mb-1">Customer Profile</h4>
+                <p class="text-xs text-gray-400">Defining the 'Dream Outcome'.</p>
             </div>
             <div class="bg-white/5 p-4 rounded-lg">
                 <Layout className="text-arkeon-gold mb-3" size={24} />
-                <h4 class="text-white font-bold mb-1">Architecture</h4>
-                <p class="text-xs text-gray-400">Sitemap & User Journey planning.</p>
+                <h4 class="text-white font-bold mb-1">Sales Architecture</h4>
+                <p class="text-xs text-gray-400">Wireframing for conversion.</p>
             </div>
         </div>
       </div>
@@ -136,9 +137,9 @@ const packages = [
       
       <div data-aos="fade-left" class="order-1 md:order-2">
         <span class="text-arkeon-gold text-sm font-bold uppercase tracking-widest mb-2 block">The Engine</span>
-        <h2 class="text-4xl font-serif text-white mb-6">Built for Speed & SEO</h2>
+        <h2 class="text-4xl font-serif text-white mb-6">Velocity as a Feature</h2>
         <p class="text-gray-300 mb-6 leading-relaxed">
-          We don't use heavy page builders that slow down your site. We write clean, semantic code using <strong>Astro</strong> and <strong>React</strong>. This ensures your site loads instantly, ranks higher on Google, and converts more visitors.
+          Speed isn't a luxury; it's a requirement. Every second of load time drops conversion by 4.42%. We build with <strong>Astro</strong> to ensure instant page loads, higher Google rankings, and seamless user retention.
         </p>
         <ul class="space-y-4">
             <li class="flex items-center gap-4">
@@ -146,8 +147,8 @@ const packages = [
                 <span class="text-white">100/100 Lighthouse Performance Scores</span>
             </li>
             <li class="flex items-center gap-4">
-                <div class="bg-blue-500/10 p-2 rounded-full text-blue-500"><Monitor size={18} /></div>
-                <span class="text-white">Fully Responsive on all devices</span>
+                <div class="bg-blue-500/10 p-2 rounded-full text-blue-500"><TrendingUp size={18} /></div>
+                <span class="text-white">Technical SEO & Analytics Included</span>
             </li>
         </ul>
       </div>
@@ -173,12 +174,12 @@ const packages = [
                         <h3 class="text-2xl font-serif text-white group-hover:text-arkeon-gold transition-colors">{pkg.name}</h3>
                         {pkg.highlight && <span class="bg-arkeon-gold text-arkeon-charcoal text-[10px] font-bold px-2 py-1 rounded">POPULAR</span>}
                     </div>
-                    <p class="text-sm text-gray-400 mb-6 h-12">{pkg.desc}</p>
+                    <p class="text-sm text-gray-400 mb-6 h-12 leading-relaxed">{pkg.desc}</p>
                     <div class="border-t border-white/5 pt-6 mt-auto">
                         <p class="text-xs text-arkeon-gold uppercase tracking-widest mb-1">Ideal For</p>
                         <p class="text-white text-sm font-medium mb-4">{pkg.idealFor}</p>
                         <div class="flex items-center justify-between">
-                            <span class="text-gray-500 text-sm">Starts at <span class="text-white font-bold">{pkg.price}</span></span>
+                            <span class="text-gray-500 text-sm">Investment: <span class="text-white font-bold">{pkg.price}</span></span>
                             <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-arkeon-gold group-hover:text-arkeon-charcoal transition-colors">
                                 <ArrowRight size={14} />
                             </span>
@@ -191,11 +192,12 @@ const packages = [
 
       <div class="mt-16">
         <a href="/pricing" class="text-white text-sm font-bold border-b border-white/20 pb-1 hover:text-arkeon-gold hover:border-arkeon-gold transition-colors">
-            Compare full details & deliverables →
+            See the Bonuses & Guarantees →
         </a>
       </div>
     </div>
   </section>
+
   {/* NEW: Growth Retainer Section */}
   <section class="py-20 bg-arkeon-gold/5 border-t border-arkeon-gold/20">
     <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
