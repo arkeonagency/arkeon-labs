@@ -1,34 +1,68 @@
 ---
+export const prerender = true;
+
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Seo from '../components/Seo.jsx';
+import StatsCounter from '../components/StatsCounter.jsx';
+import { Target, Heart, Zap, ShieldCheck } from 'lucide-react';
+import { Image } from 'astro:assets'; // Ensure Image component is imported
+import founderImage from '../assets/images/founder.jpg'; // Path to your founder image
+import signatureImage from '../assets/images/signature.png'; // Path to your signature image
+
+const values = [
+  {
+    icon: Target,
+    title: "Precision",
+    desc: "Every pixel and line of code serves a specific conversion goal. We don't guess; we measure."
+  },
+  {
+    icon: Zap,
+    title: "Velocity",
+    desc: "Speed is the primary currency. We build systems that are fast to load and fast to launch."
+  },
+  {
+    icon: ShieldCheck,
+    title: "Ownership",
+    desc: "You own your assets. No locked platforms. You control your code, domain, and data."
+  },
+  {
+    icon: Heart,
+    title: "Empathy",
+    desc: "We design for humans, not robots. We obsess over the user journey to ensure they feel understood."
+  }
+];
 ---
 
-<BaseLayout>
-  <Seo 
-    title="About" 
-    description="Arkeon is a premium web design & brand studio led by Bereket Tadele." 
-  />
+<BaseLayout 
+  title="About — Arkeon" 
+  description="Arkeon is a premium web design & brand studio led by Bereket Tadele. We create story-driven websites for founders and luxury businesses."
+>
 
-  {/* Hero */}
+  {/* HERO SECTION - Original */}
   <section class="pt-32 pb-20 relative">
     <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-arkeon-gold/10 blur-[120px] rounded-full pointer-events-none"></div>
     <div class="container mx-auto px-6 text-center relative z-10">
       <h1 class="text-5xl md:text-7xl font-serif mb-8" data-aos="fade-up">
         Where Brands <span class="text-gradient-gold">Begin</span>
       </h1>
+      <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+        Arkeon was founded on a simple belief: <strong>Ethiopian brands deserve world-class digital representation.</strong>
+      </p>
     </div>
   </section>
 
-  {/* Founder */}
+  {/* FOUNDER SECTION - Original */}
   <section class="py-20 border-t border-white/5 relative">
     <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10">
       <div data-aos="fade-right" class="relative">
         {/* Image Glow */}
         <div class="absolute inset-0 bg-arkeon-gold/20 blur-[50px] rounded-full transform scale-90"></div>
         <div class="aspect-square bg-gray-800 rounded-2xl overflow-hidden relative border border-white/10 rotate-3 hover:rotate-0 transition-all duration-700">
-          <img 
-            src="src/assets/images/founder.jpg" 
+          <Image 
+            src={founderImage} 
             alt="Bereket Tadele" 
+            width={800} // Explicit width/height for CLS
+            height={800}
             class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
           />
         </div>
@@ -45,27 +79,40 @@ import Seo from '../components/Seo.jsx';
           </p>
         </div>
         <div class="mt-8">
-           <img src="src/assets/images/signature.png" alt="" class="h-12 opacity-80 invert" /> {/* Placeholder for signature if you have one */}
+           <Image src={signatureImage} alt="Bereket Tadele Signature" width={200} height={48} class="h-12 opacity-80 invert" />
         </div>
       </div>
     </div>
   </section>
 
-  {/* Values */}
+    {/* STATS COUNTER SECTION - New Placement */}
+  <section class="py-16 bg-black/20 border-t border-white/5" data-aos="fade-up">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-serif text-white mb-10 text-center">Impact by the Numbers</h2>
+      <StatsCounter client:visible /> {/* Only loads JS when visible */}
+    </div>
+  </section>
+
+  {/* VALUES SECTION - Original */}
   <section class="py-24 relative">
     <div class="absolute inset-0 bg-white/[0.02] pointer-events-none"></div>
     <div class="container mx-auto px-6 relative z-10">
       <h2 class="text-3xl font-serif mb-12 text-center text-white">Our Values</h2>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        {['Precision', 'Mastery', 'Clarity', 'Innovation', 'Trust'].map((val, i) => (
-          <div key={i} class="text-center p-8 border border-white/10 bg-white/5 backdrop-blur-sm rounded-xl hover:border-arkeon-gold/40 hover:bg-white/10 transition-all cursor-default group">
-            <h3 class="text-xl font-bold text-gray-300 group-hover:text-white transition-colors">{val}</h3>
+        {values.map((val, i) => (
+          <div key={i} class="text-center p-8 border border-white/10 bg-white/5 backdrop-blur-sm rounded-xl hover:border-arkeon-gold/40 hover:bg-white/10 transition-all cursor-default group" data-aos="fade-up" data-aos-delay={i*100}>
+            <div class="w-12 h-12 bg-arkeon-gold/10 text-arkeon-gold rounded-lg flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform">
+              <val.icon size={24} />
+            </div>
+            <h3 class="text-xl font-bold text-gray-300 group-hover:text-white transition-colors mb-2">{val.title}</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">{val.desc}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
+  {/* CTA SECTION - Original */}
   <section class="py-32 text-center relative overflow-hidden">
      <div class="absolute inset-0 bg-radial-gradient from-arkeon-blue/20 to-transparent opacity-30"></div>
      <div class="container mx-auto px-6 relative z-10">

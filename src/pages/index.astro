@@ -2,7 +2,7 @@
 export const prerender = true; // Fixes "Type Error" crashes
 
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.jsx';
+import Hero from '../components/Hero.astro';
 import Seo from '../components/Seo.jsx';
 import CaseStudyCard from '../components/CaseStudyCard.jsx';
 import TestimonialMarquee from '../components/TestimonialMarquee.jsx';
@@ -45,7 +45,7 @@ const offers = [
     description="Arkeon is a premium web design agency in Addis Ababa. We build high-performance, story-driven websites and brand identities for startups and luxury businesses."
   />
 
-  <Hero client:load />
+  <Hero />
 
   {/* Intro Blurb */}
   <section class="py-20 bg-arkeon-charcoal" data-aos="fade-up">
