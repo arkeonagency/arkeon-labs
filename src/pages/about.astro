@@ -5,9 +5,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Seo from '../components/Seo.jsx';
 import StatsCounter from '../components/StatsCounter.jsx';
 import { Target, Heart, Zap, ShieldCheck } from 'lucide-react';
-import { Image } from 'astro:assets'; // Ensure Image component is imported
-import founderImage from '../assets/images/founder.jpg'; // Path to your founder image
-import signatureImage from '../assets/images/signature.png'; // Path to your signature image
 
 const values = [
   {
@@ -38,7 +35,7 @@ const values = [
   description="Arkeon is a premium web design & brand studio led by Bereket Tadele. We create story-driven websites for founders and luxury businesses."
 >
 
-  {/* HERO SECTION - Original */}
+  {/* HERO SECTION */}
   <section class="pt-32 pb-20 relative">
     <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-arkeon-gold/10 blur-[120px] rounded-full pointer-events-none"></div>
     <div class="container mx-auto px-6 text-center relative z-10">
@@ -51,20 +48,24 @@ const values = [
     </div>
   </section>
 
-  {/* FOUNDER SECTION - Original */}
+  {/* FOUNDER SECTION */}
   <section class="py-20 border-t border-white/5 relative">
     <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10">
       <div data-aos="fade-right" class="relative">
         {/* Image Glow */}
         <div class="absolute inset-0 bg-arkeon-gold/20 blur-[50px] rounded-full transform scale-90"></div>
         <div class="aspect-square bg-gray-800 rounded-2xl overflow-hidden relative border border-white/10 rotate-3 hover:rotate-0 transition-all duration-700">
-          <Image 
-            src={founderImage} 
+          
+          {/* CHANGED: Using standard img tag pointing to public folder (Safer for Vercel) */}
+          <img 
+            src="/images/founder.jpg" 
             alt="Bereket Tadele" 
-            width={800} // Explicit width/height for CLS
-            height={800}
+            width="800"
+            height="800"
+            loading="lazy"
             class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
           />
+          
         </div>
       </div>
       <div data-aos="fade-left">
@@ -79,14 +80,22 @@ const values = [
           </p>
         </div>
         <div class="mt-8">
-           <Image src={signatureImage} alt="Bereket Tadele Signature" width={200} height={48} class="h-12 opacity-80 invert" />
+           {/* CHANGED: Using public path */}
+           <img src="/images/signature.png" alt="Bereket Tadele Signature" class="h-12 opacity-80 invert" />
         </div>
       </div>
     </div>
   </section>
-  
 
-  {/* VALUES SECTION - Original */}
+    {/* STATS COUNTER */}
+  <section class="py-16 bg-black/20 border-t border-white/5" data-aos="fade-up">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-serif text-white mb-10 text-center">Impact by the Numbers</h2>
+      <StatsCounter client:visible />
+    </div>
+  </section>
+
+  {/* VALUES SECTION */}
   <section class="py-24 relative">
     <div class="absolute inset-0 bg-white/[0.02] pointer-events-none"></div>
     <div class="container mx-auto px-6 relative z-10">
@@ -105,7 +114,7 @@ const values = [
     </div>
   </section>
 
-  {/* CTA SECTION - Original */}
+  {/* CTA SECTION */}
   <section class="py-32 text-center relative overflow-hidden">
      <div class="absolute inset-0 bg-radial-gradient from-arkeon-blue/20 to-transparent opacity-30"></div>
      <div class="container mx-auto px-6 relative z-10">
