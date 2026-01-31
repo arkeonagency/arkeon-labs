@@ -2,41 +2,45 @@
 import '../styles/global.css';
 import Navbar from '../components/Navbar.jsx';
 import Footer from '../components/Footer.jsx';
-import 'aos/dist/aos.css';
+import Seo from '../components/Seo.jsx'; // Imported for Head usage
 import CookieBanner from '../components/CookieBanner.jsx';
+import 'aos/dist/aos.css';
 
-// 1. NEW: Import View Transitions
+// 1. Import View Transitions (Restored)
 import { ViewTransitions } from 'astro:transitions';
 
-// Import Local Fonts
+// 2. Import Fonts (Restored)
 import '@fontsource/inter/400.css';
 import '@fontsource/inter/600.css';
 import '@fontsource/playfair-display/400.css';
 import '@fontsource/playfair-display/600.css';
 import '@fontsource/playfair-display/700.css';
 
+// 3. Receive Props for SEO
+const { title, description, image } = Astro.props;
 const currentPath = Astro.url.pathname;
 ---
 
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Arkeon Studio</title>
-    
-    <style is:global>
-      @font-face { font-family: 'Inter'; font-display: swap; }
-      @font-face { font-family: 'Playfair Display'; font-display: swap; }
-    </style>
+    {/* SEO COMPONENT: Must be inside <head> to work */}
+    <Seo 
+      title={title}
+      description={description}
+      image={image}
+    />
+
+    {/* View Transitions: Enables the "App-like" navigation */}
+    <ViewTransitions />
 
     {/* Preload Critical Fonts */}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/playfair-display-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
 
-    <!-- GOOGLE ANALYTICS (GA4) - Moved to Partytown -->
+    {/* GOOGLE ANALYTICS (Partytown) */}
     <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-KWH8FBPTYE"></script>
     <script type="text/partytown">
       window.dataLayer = window.dataLayer || [];
@@ -45,7 +49,7 @@ const currentPath = Astro.url.pathname;
       gtag('config', 'G-KWH8FBPTYE');
     </script>
 
-    <!-- MICROSOFT CLARITY - Moved to Partytown -->
+    {/* MICROSOFT CLARITY (Partytown) */}
     <script type="text/partytown">
         (function(c,l,a,r,i,t,y){
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -53,7 +57,8 @@ const currentPath = Astro.url.pathname;
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
         })(window, document, "clarity", "script", "ugnyme494i");
     </script>
-    <!-- JSON-LD Structured Data (The "Local Authority" Signal) -->
+
+    {/* JSON-LD Structured Data */}
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -71,47 +76,34 @@ const currentPath = Astro.url.pathname;
         "priceRange": "ETB 20000 - ETB 200000+",
         "openingHoursSpecification": {
           "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-            "Sunday"
-          ],
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
           "opens": "09:00",
           "closes": "18:00"
         }
       }
     </script>
-
   </head>
+
   <body class="bg-arkeon-charcoal text-white overflow-x-hidden selection:bg-arkeon-gold selection:text-arkeon-charcoal flex flex-col min-h-screen">
     
-    {/* 
-        transition:persist ensures the Navbar doesn't reload/flash 
-        when you move between pages. It stays steady.
-    */}
+    {/* NAVBAR: transition:persist keeps it from reloading */}
     <div transition:persist>
       <Navbar client:load path={currentPath} />
     </div>
 
+    {/* MAIN CONTENT: Fades in smoothly */}
     <main class="flex-grow pt-20" transition:animate="fade">
       <slot />
     </main>
-    
-    
 
     <Footer client:visible />
     
     <CookieBanner client:idle />
 
+    {/* ANIMATION SCRIPT: Handles re-init on page change */}
     <script>
       import AOS from 'aos';
       
-      // 3. NEW: Handle Animations on Navigation
-      // We wrap the init logic in a function
       function initAnimations() {
         AOS.init({
           duration: 800,
@@ -125,7 +117,7 @@ const currentPath = Astro.url.pathname;
       // Run on initial load
       initAnimations();
 
-      // Run on every page navigation (View Transition)
+      // Run on View Transition navigation
       document.addEventListener('astro:page-load', () => {
         initAnimations();
       });
